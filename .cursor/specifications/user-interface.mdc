@@ -1,41 +1,50 @@
 ---
-description: Always request when updating user interface logic.
+description: Always request when updating the user interface and how the game interacts with the user.
 globs: 
 alwaysApply: false
 ---
-# User Interface
+## User Interface
 
-The user interface will be implemented through command line prompts with the following features:
+The View will handle all input/output operations. Key features include:
 
 ### Display Elements
-- Current balance display
-- Current bet amount
-- Game phase indicator (Come Out or Point)
-- Point number display (when applicable)
-- Dice roll results
-- Win/loss messages
-- Error messages for invalid inputs
+- Current balance (e.g., `Balance: $95`)
+- Current bet (e.g., `Current Bet: $5`)
+- Game phase indicator: `Come Out Roll` or `Point Phase`
+- Dice results: `You rolled a 6 and a 2 (8 total)`
+- Point display: `Point is 8` (during Point Phase)
+- Game status messages: `You win!`, `You lose!`, etc.
 
-### User Interactions
-- Bet amount input (with validation for minimum $5 and maximum current balance)
-- Roll dice command
-- Option to quit game
-- Option to view game rules
-- Confirmation prompts for important actions
+### User Inputs
+- `Enter bet amount:` (must be ≥ $5 and ≤ balance)
+- `Press Enter to roll the dice`
+- `Type 'rules' to view game rules`
+- `Type 'quit' to exit the game`
 
-### Interface Guidelines
-- Clear formatting with visual separators
-- Consistent prompt style
-- Color-coded output (where supported) for:
-  - Warnings and errors (red)
-  - Successful rolls and wins (green)
-  - Important game state information (yellow)
-- Clear error messages for invalid inputs
-- Status updates after each action
+### Output Styling (Optional Enhancements)
+- Red text for errors (e.g., invalid input)
+- Green for wins, yellow for state info (if terminal supports ANSI colors)
+- Separators like `====================` for clarity
 
-### Game Flow
-1. Welcome screen with initial balance
-2. Bet prompt before each round
-3. Clear dice roll results
-4. Updated balance after each round
-5. Game end screen (win/lose condition met)
+### Example Round
+<example>
+====================
+Balance: $95
+Current Phase: Come Out Roll
+Enter your bet: 10
+> 10
+Rolling dice...
+You rolled a 6 and a 2 (8 total)
+Point is now 8
+====================
+Current Phase: Point Phase
+Press Enter to roll the dice
+> [Enter]
+Rolling dice...
+You rolled a 3 and a 4 (7 total)
+You lose!
+====================
+Balance: $85
+Would you like to play another round? (yes/no)
+> yes
+</example>

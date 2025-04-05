@@ -20,5 +20,9 @@ JavaCraps is a Java implementation of the casino game Craps. The game simulates 
 ## User Interface
 [user-interface.mdc](mdc:.cursor/specifications/user-interface.mdc)
 
+## Game Architecture and Flow
+[game-architecture-and-flow.mdc](mdc:.cursor/specifications/game-architecture-and-flow.mdc)
+
 ## Game Implementation Requirements
 [game-implementation-requirements.mdc](mdc:.cursor/specifications/game-implementation-requirements.mdc)
+

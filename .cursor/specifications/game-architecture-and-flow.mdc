@@ -1,0 +1,77 @@
+---
+description: Always request when updating architecture and game flow.
+globs: 
+alwaysApply: false
+---
+# Game Architecture and Flow
+
+## Architecture Overview
+
+We will use a simple MVC pattern implemented in Java:
+- **Model**: `GameState`, `Player`, `Bet`, `Dice`, etc.
+- **View**: Command-line UI or simple Swing GUI
+- **Controller**: Manages game phases, user input, and transitions
+
+## Game Flow
+
+```plantuml
+@startuml
+start
+:Initialize game state;
+:Display balance and ask for bet;
+:Roll Dice;
+
+if (Come Out Roll) then (true)
+  if (7 or 11?) then (yes)
+    :Player wins;
+    -> [reset]
+  elseif (2,3,12?) then (yes)
+    :Player loses;
+    -> [reset]
+  else
+    :Set point;
+    :Enter Point Phase;
+    repeat
+      :Roll Dice;
+      if (Roll == point) then (yes)
+        :Player wins;
+        -> [reset]
+      elseif (Roll == 7) then (yes)
+        :Player loses;
+        -> [reset]
+      endif
+    repeat while (not win or lose)
+  endif
+endif
+stop
+@enduml
+
+## Core Class Structure
+
+### `GameState`
+- Fields: `phase`, `point`, `status` (e.g., playing, win, lose)
+- Methods:
+  - `reset()`
+  - `enterPointPhase(int point)`
+  - `checkOutcome(int roll)`
+
+### `Player`
+- Fields: `balance`, `currentBet`
+- Methods:
+  - `placeBet(int amount)`
+  - `updateBalance(int delta)`
+  - `canBet(int amount)`
+
+### `Dice`
+- Method: `roll()` → returns sum of two random integers from 1–6
+
+### `CrapsGameController`
+- Main game loop
+- Reads user input, calls model logic, and updates view
+
+### `CLIView`
+- Handles display and input prompts
+- Outputs status, prompts, and errors
+
+Would you like to see a sample file layout or Java code snippet for one of these classes (e.g., `GameState` or `CrapsGameController`) before we move on to the **Implementation** section? &#8203;:contentReference[oaicite:0]{index=0}&#8203;
+
