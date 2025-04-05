@@ -6,9 +6,9 @@ alwaysApply: true
 # Main Project Specifications
 
 ## Overview
-JavaCraps is a Java implementation of the casino game Craps. The game simulates the dice-based gambling game with specific win/lose conditions and betting rules.
+This project implements a terminal-based version of the classic dice game Craps using Java and the Model-View-Controller (MVC) architecture. It is a learning-focused, offline simulation intended for single-player use. The goal is to win by growing the player’s balance from $100 to $1000 using correct betting and dice roll outcomes per Craps rules.
 
-## Game Parameters
+## Game Conditions
 - Starting Balance: $100
 - Minimum Bet: $5
 - Win Condition: Reaching $1000
@@ -16,16 +16,18 @@ JavaCraps is a Java implementation of the casino game Craps. The game simulates 
 
 ## Game Requirements
 ### Must Have
-- Implement core Craps game logic with:
-  * Dice rolling mechanism (2 six-sided dice)
+- Core Craps gameplay logic including:
+  * Dice rolling mechanism (two six-sided dice)
   * Game phase management (Come Out Roll and Point Phase)
-  * Bet placement system with minimum $5 bet
-  * Balance tracking for player starting at $100
-  * Win condition: player balance reaches $1000
-  * Lose condition: player balance reaches $0
-- Simple terminal-based or GUI-based interface for interaction
-- Clear display of current balance, current bet, and game state
-- State transitions with appropriate prompts (e.g., win/loss messages)
+  * Bet placement system with a minimum bet of $5
+  * Player balance starting at $100
+  * Win condition: balance reaches $1000
+  * Lose condition: balance reaches $0
+- MVC architecture implemented in Java
+- State transitions and game outcomes based on standard Craps rules
+- Interactive interface (terminal or simple GUI)
+- Clear UI display for balance, current bet, and game state
+- Game state management (win/loss/reset)
 
 ### Should Have
 - Prevent betting more than the current balance
@@ -42,7 +44,10 @@ JavaCraps is a Java implementation of the casino game Craps. The game simulates 
 - Real-money transactions
 
 ## Game Rules
-[game-rules.mdc](mdc:.cursor/specifications/game-rules.mdc)
+[core-game-flow.mdc](mdc:.cursor/specifications/core-game-flow.mdc)
+
+## Game Architecture
+[game-architecture.mdc](mdc:.cursor/specifications/game-architecture.mdc)
 
 ## Project Structure
 [project-structure.mdc](mdc:.cursor/specifications/project-structure.mdc)
@@ -50,8 +55,127 @@ JavaCraps is a Java implementation of the casino game Craps. The game simulates 
 ## User Interface
 [user-interface.mdc](mdc:.cursor/specifications/user-interface.mdc)
 
-## Example Game Flow
-[example-game-flow.mdc](mdc:.cursor/specifications/example-game-flow.mdc)
+## Implementation Tasks
 
-## Game Architecture
-[game-architecture.mdc](mdc:.cursor/specifications/game-architecture.mdc)
+### 1. Project Setup
+
+- [ ] Initialize a new Maven project:
+  - Group ID: `com.javacraps`
+  - Artifact ID: `javacraps`
+  - Version: `1.0-SNAPSHOT`
+- [ ] Set up standard Maven directory structure:
+  - [ ] `src/main/java/com/javacraps/...`
+  - [ ] `src/test/java/com/javacraps/...`
+
+### 2. Implement Core Model
+
+- [ ] Create `Player` class for handling bets and balance
+- [ ] Create `Dice` utility class to simulate rolling
+- [ ] Create `GameState` class with enums `GamePhase` and `GameStatus`
+
+### 3. Game Logic (Controller)
+
+- [ ] Create `GameController` class
+  - [ ] Initialize player and game state
+  - [ ] Prompt for and validate bet
+  - [ ] Roll dice and evaluate outcome
+  - [ ] Update balance and display result
+  - [ ] Reset or end game based on outcome
+
+### 4. Terminal UI (View)
+
+- [ ] Create `TerminalView` class
+  - [ ] Display game state and prompt for input
+  - [ ] Validate and return input
+  - [ ] Show win/lose messages
+
+### 5. Integration & Game Loop
+
+- [ ] Create `Main` class to wire everything
+  - [ ] Instantiate `GameController`
+  - [ ] Loop until game ends (win/lose)
+
+### 6. Testing
+
+- [ ] Write unit tests for:
+  - [ ] Dice roll range (2–12)
+  - [ ] GameState transitions
+  - [ ] Player bet constraints
+- [ ] (Optional) Use JUnit framework
+
+### 7. (Optional) Polish
+
+- [ ] Implement manual reset/restart game feature
+- [ ] Add ASCII dice visuals or color text output
+
+## Milestones
+
+### Milestone 1: Project Bootstrapping
+- [ ] Set up Maven project structure
+- [ ] Verify project builds and runs a basic `Main` class
+
+### Milestone 2: Core Game Model
+- [ ] Implement and test `Player` class
+- [ ] Implement and test `Dice` class
+- [ ] Implement and test `GameState` with state transitions
+
+### Milestone 3: Game Logic Controller
+- [ ] Implement `GameController` with basic game loop
+- [ ] Integrate with `GameState` and `Player`
+- [ ] Add test coverage for major logic branches
+
+### Milestone 4: Terminal User Interface
+- [ ] Implement `TerminalView` with input/output
+- [ ] Handle user input validation and messaging
+- [ ] Connect view with controller to play full game
+
+### Milestone 5: Integration and Flow Testing
+- [ ] Complete full playthrough testing (win/loss paths)
+- [ ] Fix edge cases (e.g., betting more than balance, invalid input)
+
+### Milestone 6: Polish and Optional Features
+- [ ] Add ASCII visuals or simple terminal effects
+- [ ] Add restart option after game ends
+- [ ] Final code cleanup and documentation
+
+### Milestone 7: Release MVP
+- [ ] Final user testing
+- [ ] Tag `v1.0` release
+- [ ] Deliver project package or deploy as CLI tool
+
+## Gathering Results
+
+### Evaluation Criteria
+
+- **Functional Correctness**
+  - [ ] All game rules are implemented according to official Craps logic
+  - [ ] Bet handling, balance updates, and win/loss states behave correctly
+  - [ ] Game state transitions (Come Out → Point → Win/Lose) function reliably
+
+- **User Experience**
+  - [ ] Clear and intuitive terminal prompts and messages
+  - [ ] Error handling for invalid inputs is user-friendly
+  - [ ] Game flow is smooth and responsive
+
+- **Technical Quality**
+  - [ ] Code follows Java best practices and MVC separation of concerns
+  - [ ] Unit tests pass and cover major logic paths
+  - [ ] Project builds and runs without issues on standard Java environments
+
+- **Performance**
+  - [ ] Dice rolls are statistically fair
+  - [ ] No memory or runtime issues during multiple game loops
+
+### Post-Release Feedback
+
+- [ ] Gather feedback from test users (e.g., fun factor, clarity, difficulty)
+- [ ] Note areas of confusion or friction to improve in future iterations
+
+### Success Criteria
+
+- [ ] MVP delivers a fully playable terminal-based Craps game
+- [ ] Player can win or lose based on balance reaching thresholds
+- [ ] All major requirements in the "Must Have" list are satisfied
+
+
+

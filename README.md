@@ -1,5 +1,8 @@
 # JavaCraps
-A basic implementation of craps using Java.
+This project implements a terminal-based version of the classic dice game Craps using Java and the Model-View-Controller (MVC) architecture. It is a learning-focused, offline simulation intended for single-player use. The goal is to win by growing the player’s balance from $100 to $1000 using correct betting and dice roll outcomes per Craps rules.
+
+* project specs and architecture: Software Architect GPT 
+* coding: Cursor as an AI coding agent
 
 ## Run the application
 1. `mvn clean install`

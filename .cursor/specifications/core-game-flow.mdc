@@ -3,6 +3,21 @@ description: Request when modifying the game flow.
 globs: 
 alwaysApply: false
 ---
+## Core Game Flow
+
+1. Initialize game state and show player balance.
+2. Prompt for and validate bet input.
+3. Roll two dice and determine outcome based on Craps rules:
+   - **Come Out Roll**:
+     - Win if roll is 7 or 11.
+     - Lose if roll is 2, 3, or 12.
+     - Otherwise, set point and enter Point Phase.
+   - **Point Phase**:
+     - Continue rolling.
+     - Win if roll matches point.
+     - Lose if roll is 7.
+4. Update balance and reset or end game depending on win/loss.
+
 ## Example Game Flow
 
 ```plantuml
