@@ -34,24 +34,7 @@ JavaCraps/
 │   └── com/game/controller/
 │       ├── GameController.java
 │       ├── MoveHandler.java
-│       └── TurnManager.java
-│
-├── persistence/
-│   └── com/game/persistence/
-│       ├── GameSaver.java
-│       ├── GameLoader.java
-│       └── SettingsManager.java
-│
-├── network/  (optional)
-│   └── com/game/network/
-│       ├── NetworkManager.java
-│       ├── ClientHandler.java
-│       └── ServerHandler.java
-│
-├── audio/  (optional)
-│   └── com/game/audio/
-│       ├── SoundManager.java
-│       └── MusicPlayer.java
+│       └── TurnManager.javaå
 │
 ├── utils/
 │   └── com/game/utils/
