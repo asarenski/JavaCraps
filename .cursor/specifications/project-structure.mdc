@@ -3,48 +3,65 @@ description: Spec for the file structure for the project. Always request when cr
 globs: 
 alwaysApply: false
 ---
-# Java Game Project Structure
+# Project Structure
 
-This structure organizes the codebase into logical modules, promoting separation of concerns and scalability.
+## Overview
+JavaCraps is organized as a Maven multi-module project with the following structure:
+<example>
 
 ```
 JavaCraps/
+├── .cursor/                    # IDE-specific config
 ├── core/
-│   └── com/game/core/
-│       ├── GameEngine.java
-│       ├── GameState.java
-│       ├── Player.java
-│       └── MoveValidator.java
-│
-├── ui/
-│   └── com/game/ui/
-│       ├── GameWindow.java
-│       ├── BoardRenderer.java
-│       ├── InputHandler.java
-│       └── UIController.java
-│
-├── model/
-│   └── com/game/model/
-│       ├── Board.java
-│       ├── Tile.java
-│       ├── Token.java
-│       └── Coordinates.java
-│
+│   └── src/main/java/org/asarenski/JavaCraps/core/
+│       ├── GameEngine.java       # Orchestrates game flow
+│       ├── GameState.java        # Tracks game phase, point, win/loss
+│       ├── Dice.java             # Handles dice rolls
+│       └── Player.java           # Manages player balance and bets
+├── cli/
+│   └── src/main/java/org/asarenski/JavaCraps/cli/
+│       ├── CLIView.java          # Displays info to the user
+│       └── InputHandler.java     # Reads and validates user input
 ├── controller/
-│   └── com/game/controller/
-│       ├── GameController.java
-│       ├── MoveHandler.java
-│       └── TurnManager.javaå
-│
-├── utils/
-│   └── com/game/utils/
-│       ├── Logger.java
-│       ├── Timer.java
-│       └── MathUtils.java
-│
-└── Main.java
-```
+│   └── src/main/java/org/asarenski/JavaCraps/controller/
+│       └── CrapsGameController.java # Main loop coordinating gameplay
+├── main/
+│   └── src/main/java/org/asarenski/JavaCraps/
+│       └── Main.java             # Entry point with main method
+├── pom.xml
+├── scripts.sh
+├── README.md
+└── LICENSE
 
-### Notes:
-- Each top-level folder (e.g., `core`, `ui`, `controller`) can be managed as a separate module if you're using a modular build system (like Maven or Gradle multi-module projects).
-- `Main.java` serves as the entry point to the game and initializes the controller/UI.
+```
+</example>
+
+## Module Descriptions
+
+### Main Module
+- Package: `org.asarenski.JavaCraps`
+- Purpose: Application entry point and CLI integration
+- Key Components:
+  - `Main.java`: Launches the game
+
+### Core Module
+- Package: `org.asarenski.JavaCraps.core`
+- Purpose: Contains the core Craps game logic and state management
+- Key Components:
+  - `GameEngine`: Manages game flow and transitions
+  - `GameState`: Manages the phase, point, and win/loss states
+  - `Dice`: Simulates dice rolls
+  - `Player`: Manages player's balance and bets
+
+### CLI Module
+- Package: `org.asarenski.JavaCraps.cli`
+- Purpose: Command-line user interface
+- Key Components:
+  - `CLIView`: Displays prompts and results
+  - `InputHandler`: Reads and validates input
+
+### Controller Module
+- Package: `org.asarenski.JavaCraps.controller`
+- Purpose: Coordinates core logic and UI
+- Key Components:
+  - `CrapsGameController`: Orchestrates the game loop

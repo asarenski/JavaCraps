@@ -1,6 +1,10 @@
 # JavaCraps
 A basic implementation of craps using Java.
 
+## Run the application
+1. `mvn clean install`
+1. `mvn exec:java -Dexec.mainClass="org.asarenski.JavaCraps.Main"`
+
 ## Win/Lose States
 The player starts the game with $100. Minimum bet is $5. If the player reaches $0 they lose. If the player reaches $1000 they win.
 

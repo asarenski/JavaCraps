@@ -1,0 +1,88 @@
+package org.asarenski.JavaCraps.core;
+
+/**
+ * Represents a player in the Craps game, managing their balance and bets.
+ */
+public class Player {
+    private static final int STARTING_BALANCE = 100;
+    private static final int MINIMUM_BET = 5;
+    private static final int WINNING_BALANCE = 1000;
+
+    private int balance;
+    private int currentBet;
+
+    public Player() {
+        reset();
+    }
+
+    /**
+     * Resets the player's state to initial values.
+     */
+    public void reset() {
+        balance = STARTING_BALANCE;
+        currentBet = 0;
+    }
+
+    /**
+     * Attempts to place a bet.
+     * @param amount The amount to bet
+     * @return true if bet was successfully placed, false otherwise
+     */
+    public boolean placeBet(int amount) {
+        if (!canBet(amount)) {
+            return false;
+        }
+        currentBet = amount;
+        balance -= amount;
+        return true;
+    }
+
+    /**
+     * Updates the player's balance based on game outcome.
+     * @param won true if the player won, false if they lost
+     */
+    public void updateBalance(boolean won) {
+        if (won) {
+            balance += currentBet * 2; // Return original bet plus winnings
+        }
+        currentBet = 0;
+    }
+
+    /**
+     * Checks if the player can place the specified bet.
+     * @param amount The amount to check
+     * @return true if the bet can be placed, false otherwise
+     */
+    public boolean canBet(int amount) {
+        return amount >= MINIMUM_BET && amount <= balance;
+    }
+
+    /**
+     * Checks if the player has won the game by reaching the winning balance.
+     * @return true if the player has won, false otherwise
+     */
+    public boolean hasWon() {
+        return balance >= WINNING_BALANCE;
+    }
+
+    /**
+     * Checks if the player has lost the game by running out of money.
+     * @return true if the player has lost, false otherwise
+     */
+    public boolean hasLost() {
+        return balance <= 0;
+    }
+
+    // Getters
+    public int getBalance() {
+        return balance;
+    }
+
+    public int getCurrentBet() {
+        return currentBet;
+    }
+
+    public static int getMinimumBet() {
+        return MINIMUM_BET;
+    }
+} 

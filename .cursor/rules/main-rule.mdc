@@ -6,8 +6,15 @@ alwaysApply: true
 # Main Rule
 You are a Java expert.
 
+## Build Configuration
+- Java Version: 21
+- Maven multi-module project
+
 ## Project Specifications
 [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc)
+
+## Module Creation Guidelines
+[module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)
 
 
 

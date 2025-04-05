@@ -1,0 +1,30 @@
+---
+description: Always review this rule when creating new modules, refactoring modules, moving files, renaming packages, or moving packages.
+globs: 
+alwaysApply: false
+---
+## Module Creation Guidelines
+1. Directory Structure:
+   - Create module directory: `mkdir -p module-name/src/main/java/org/asarenski/JavaCraps/module-name`
+   - Follow Java package convention: `com.asarenski.JavaCraps.[module-name]`
+
+2. Module POM Configuration:
+   ```xml
+   <parent>
+       <groupId>org.asarenski.JavaCraps</groupId>
+       <artifactId>craps</artifactId>
+       <version>1.0-SNAPSHOT</version>
+   </parent>
+   <artifactId>[module-name]</artifactId>
+   <name>JavaCraps [ModuleName]</name>
+   ```
+
+3. Parent POM Updates:
+   - Add new module to parent's modules section:
+   ```xml
+   <modules>
+       <module>[module-name]</module>
+   </modules>
+   ```
+   - Ensure consistent Java version across modules
+   - Use parent's properties for version management
