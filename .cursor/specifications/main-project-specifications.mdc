@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 # Main Project Specifications
 
@@ -16,6 +16,9 @@ JavaCraps is a Java implementation of the casino game Craps. The game simulates 
 
 ## Game Rules
 [game-rules.mdc](mdc:.cursor/specifications/game-rules.mdc)
+
+## Project Structure
+[project-structure.mdc](mdc:.cursor/specifications/project-structure.mdc)
 
 ## User Interface
 [user-interface.mdc](mdc:.cursor/specifications/user-interface.mdc)

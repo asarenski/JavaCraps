@@ -1,0 +1,67 @@
+---
+description: Spec for the file structure for the project. Always request when creating new files, moving files, creating modules, updating moduels, or architecture setup.
+globs: 
+alwaysApply: false
+---
+# Java Game Project Structure
+
+This structure organizes the codebase into logical modules, promoting separation of concerns and scalability.
+
+```
+JavaCraps/
+├── core/
+│   └── com/game/core/
+│       ├── GameEngine.java
+│       ├── GameState.java
+│       ├── Player.java
+│       └── MoveValidator.java
+│
+├── ui/
+│   └── com/game/ui/
+│       ├── GameWindow.java
+│       ├── BoardRenderer.java
+│       ├── InputHandler.java
+│       └── UIController.java
+│
+├── model/
+│   └── com/game/model/
+│       ├── Board.java
+│       ├── Tile.java
+│       ├── Token.java
+│       └── Coordinates.java
+│
+├── controller/
+│   └── com/game/controller/
+│       ├── GameController.java
+│       ├── MoveHandler.java
+│       └── TurnManager.java
+│
+├── persistence/
+│   └── com/game/persistence/
+│       ├── GameSaver.java
+│       ├── GameLoader.java
+│       └── SettingsManager.java
+│
+├── network/  (optional)
+│   └── com/game/network/
+│       ├── NetworkManager.java
+│       ├── ClientHandler.java
+│       └── ServerHandler.java
+│
+├── audio/  (optional)
+│   └── com/game/audio/
+│       ├── SoundManager.java
+│       └── MusicPlayer.java
+│
+├── utils/
+│   └── com/game/utils/
+│       ├── Logger.java
+│       ├── Timer.java
+│       └── MathUtils.java
+│
+└── Main.java
+```
+
+### Notes:
+- Each top-level folder (e.g., `core`, `ui`, `controller`) can be managed as a separate module if you're using a modular build system (like Maven or Gradle multi-module projects).
+- `Main.java` serves as the entry point to the game and initializes the controller/UI.
