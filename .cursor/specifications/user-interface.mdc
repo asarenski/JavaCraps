@@ -1,0 +1,41 @@
+---
+description: Always request when updating user interface logic.
+globs: 
+alwaysApply: false
+---
+# User Interface
+
+The user interface will be implemented through command line prompts with the following features:
+
+### Display Elements
+- Current balance display
+- Current bet amount
+- Game phase indicator (Come Out or Point)
+- Point number display (when applicable)
+- Dice roll results
+- Win/loss messages
+- Error messages for invalid inputs
+
+### User Interactions
+- Bet amount input (with validation for minimum $5 and maximum current balance)
+- Roll dice command
+- Option to quit game
+- Option to view game rules
+- Confirmation prompts for important actions
+
+### Interface Guidelines
+- Clear formatting with visual separators
+- Consistent prompt style
+- Color-coded output (where supported) for:
+  - Warnings and errors (red)
+  - Successful rolls and wins (green)
+  - Important game state information (yellow)
+- Clear error messages for invalid inputs
+- Status updates after each action
+
+### Game Flow
+1. Welcome screen with initial balance
+2. Bet prompt before each round
+3. Clear dice roll results
+4. Updated balance after each round
+5. Game end screen (win/lose condition met)
