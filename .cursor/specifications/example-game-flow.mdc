@@ -1,0 +1,57 @@
+---
+description: Request when modifying the game flow.
+globs: 
+alwaysApply: false
+---
+## Example Game Flow
+
+```plantuml
+@startuml
+start
+:Initialize game state;
+:Display balance and ask for bet;
+:Roll Dice;
+
+if (Come Out Roll) then (true)
+  if (7 or 11?) then (yes)
+    :Player wins;
+    -> [reset]
+  elseif (2,3,12?) then (yes)
+    :Player loses;
+    -> [reset]
+  else
+    :Set point;
+    :Enter Point Phase;
+    repeat
+      :Roll Dice;
+      if (Roll == point) then (yes)
+        :Player wins;
+        -> [reset]
+      elseif (Roll == 7) then (yes)
+        :Player loses;
+        -> [reset]
+      endif
+    repeat while (not win or lose)
+  endif
+endif
+stop
+@enduml
+```
+
+## Game State Machine
+
+```plantuml
+@startuml
+[*] --> ComeOut : Start Game
+
+ComeOut --> Win : Roll 7 or 11
+ComeOut --> Lose : Roll 2, 3, or 12
+ComeOut --> PointPhase : Roll 4, 5, 6, 8, 9, or 10
+PointPhase --> Win : Roll equals point
+PointPhase --> Lose : Roll 7
+PointPhase --> PointPhase : Any other roll
+
+Win --> [*] : Reset Game
+Lose --> [*] : Reset Game
+@enduml
+```

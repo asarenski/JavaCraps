@@ -1,0 +1,69 @@
+---
+description: Always request when updating architecture and game flow.
+globs: 
+alwaysApply: false
+---
+# Game Architecture
+
+## Architecture Overview
+
+We will use a simple MVC pattern implemented in Java:
+- **Model**: `GameState`, `Player`, `Bet`, `Dice`, etc.
+- **View**: Command-line UI or simple Swing GUI
+- **Controller**: Manages game phases, user input, and transitions
+
+## Method
+
+### Architecture Overview
+
+The application uses a terminal-based Java MVC architecture. All data is maintained in-memory for the duration of a single session. There is no persistence layer.
+
+```plantuml
+@startuml
+package "Model" {
+  class Player {
+    - name: String
+    - balance: int
+    - currentBet: int
+  }
+
+  class GameState {
+    - phase: GamePhase
+    - point: int
+    - status: GameStatus
+    + reset()
+    + enterPointPhase(int)
+    + checkOutcome(int): GameStatus
+  }
+
+  class Dice {
+    + roll(): int[]
+  }
+}
+
+package "Controller" {
+  class GameController {
+    - gameState: GameState
+    - player: Player
+    + startGame()
+    + handleBet()
+    + playRound()
+  }
+}
+
+package "View" {
+  class TerminalView {
+    + displayState()
+    + getUserInput(): String
+    + showMessage(String)
+  }
+}
+
+GameController --> GameState
+GameController --> Player
+GameController --> Dice
+GameController --> TerminalView
+@enduml
+```
+
+
