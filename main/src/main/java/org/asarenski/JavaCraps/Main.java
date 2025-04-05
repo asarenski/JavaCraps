@@ -1,4 +1,4 @@
-package org.asarenski;
+package org.asarenski.JavaCraps;
 
 public class Main {
     public static void main(String[] args) {

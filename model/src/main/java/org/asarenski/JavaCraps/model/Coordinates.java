@@ -1,4 +1,4 @@
-package org.asarenski.model;
+package org.asarenski.JavaCraps.model;
 
 /**
  * Represents a position on the Craps game board.

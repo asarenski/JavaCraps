@@ -1,4 +1,4 @@
-package org.asarenski.model;
+package org.asarenski.JavaCraps.model;
 
 /**
  * Represents a betting token in the Craps game.

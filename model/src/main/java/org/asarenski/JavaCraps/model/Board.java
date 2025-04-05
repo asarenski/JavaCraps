@@ -1,4 +1,4 @@
-package org.asarenski.model;
+package org.asarenski.JavaCraps.model;
 
 /**
  * Represents the game board state for the Craps game.

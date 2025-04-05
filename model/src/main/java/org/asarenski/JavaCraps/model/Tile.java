@@ -1,4 +1,4 @@
-package org.asarenski.model;
+package org.asarenski.JavaCraps.model;
 
 import java.util.ArrayList;
 import java.util.List;
