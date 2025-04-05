@@ -15,16 +15,10 @@ JavaCraps is a Java implementation of the casino game Craps. The game simulates 
 - Lose Condition: Reaching $0
 
 ## Game Rules
-[game-rules.mdc](mdc:.cursor/rules/specifications/game-rules.mdc)
-
-## Technical Requirements
-- Language: Java
-- Implementation must include:
-  - Dice rolling mechanics
-  - Betting system
-  - Balance tracking
-  - Win/lose state management
-  - Game phase tracking (come out vs point phase)
+[game-rules.mdc](mdc:.cursor/specifications/game-rules.mdc)
 
 ## User Interface
-[user-interface.mdc](mdc:.cursor/rules/specifications/user-interface.mdc)
+[user-interface.mdc](mdc:.cursor/specifications/user-interface.mdc)
+
+## Game Implementation Requirements
+[game-implementation-requirements.mdc](mdc:.cursor/specifications/game-implementation-requirements.mdc)

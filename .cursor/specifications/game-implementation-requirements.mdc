@@ -1,0 +1,33 @@
+---
+description: Always request when updating core gameplay mechanics.
+globs: 
+alwaysApply: false
+---
+# Implementation Requirements
+- Language: Java
+
+## Must Have
+- Implement core Craps game logic with:
+  * Dice rolling mechanism (2 six-sided dice)
+  * Game phase management (Come Out Roll and Point Phase)
+  * Bet placement system with minimum $5 bet
+  * Balance tracking for player starting at $100
+  * Win condition: player balance reaches $1000
+  * Lose condition: player balance reaches $0
+- Simple terminal-based or GUI-based interface for interaction
+- Clear display of current balance, current bet, and game state
+- State transitions with appropriate prompts (e.g., win/loss messages)
+
+## Should Have
+- Prevent betting more than the current balance
+- Show history of previous rolls and outcomes
+- Simple error handling (invalid inputs, non-numeric entries)
+
+## Could Have
+- Sound or animation effects for dice roll in GUI version
+- Multiple player profiles or sessions
+- Option to reset game
+
+## Won’t Have
+- Multiplayer over network
+- Real-money transactions
