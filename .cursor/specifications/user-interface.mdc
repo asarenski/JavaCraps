@@ -26,25 +26,56 @@ The View will handle all input/output operations. Key features include:
 - Green for wins, yellow for state info (if terminal supports ANSI colors)
 - Separators like `====================` for clarity
 
-### Example Round
-<example>
+### Example Round (Correct)
+<example type="correct">
 ====================
-Balance: $95
-Current Phase: Come Out Roll
-Enter your bet: 10
-> 10
-Rolling dice...
+Welcome to JavaCraps!
+Type 'rules' at any time to view game rules, or 'quit' to exit.
+====================
+====================
+Player's Balance: $100
+Current Phase: COME OUT ROLL
+====================
+Enter your bet (minimum $5, maximum $100): 10
+> [Enter]
+Press Enter to roll the dice (or type 'quit' to exit):
+> [Enter]
 You rolled a 6 and a 2 (8 total)
 Point is now 8
 ====================
-Current Phase: Point Phase
-Press Enter to roll the dice
-> [Enter]
-Rolling dice...
-You rolled a 3 and a 4 (7 total)
-You lose!
+Player's Balance: $50
+Current Phase: POINT PHASE
+Point is: 8
 ====================
-Balance: $85
+Press Enter to roll the dice (or type 'quit' to exit):
+> [Enter]
+You rolled a 6 and a 1 (7 total)
+You lose...
+====================
+Balance: $90
 Would you like to play another round? (yes/no)
 > yes
+</example>
+
+### Example Round (Incorrect)
+<example type="incorrect">
+====================
+Welcome to JavaCraps!
+Type 'rules' at any time to view game rules, or 'quit' to exit.
+====================
+====================
+Player's Balance: $100
+Current Phase: COME OUT ROLL
+====================
+Enter your bet (minimum $5, maximum $100): 50
+Press Enter to roll the dice (or type 'quit' to exit):
+You rolled a 5 and a 6 (11 total)
+====================
+Player's Balance: $50
+Current Phase: POINT PHASE
+Point is: 10
+====================
+Press Enter to roll the dice (or type 'quit' to exit):
+You rolled a 6 and a 1 (7 total)
+You win $50!
 </example>
