@@ -27,6 +27,46 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
 ## Module Creation Guidelines
 [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)
 
+## Tool Call Guidelines
+### Git Commits
+- Keep commit messages single-line when using run_terminal_cmd
+- For multi-line commit messages, use a condensed format:
+  ```bash
+  # Instead of:
+  git commit -m "Title
+  - Point 1
+  - Point 2"
+  
+  # Use:
+  git commit -m "Title - Point 1, Point 2"
+  ```
+- Include key changes in a concise format:
+  ```bash
+  git commit -m "Fix feature X - Update class A, modify method B, add tests"
+  ```
+
+### Terminal Commands
+- Avoid newlines in command parameters
+- Use semicolons for multiple commands instead of newlines:
+  ```bash
+  # Instead of:
+  cd dir
+  mvn test
+  
+  # Use:
+  cd dir && mvn test
+  ```
+- For long commands, use command concatenation:
+  ```bash
+  # Instead of multiple lines:
+  cd dir
+  mvn clean
+  mvn install
+  
+  # Use:
+  cd dir && mvn clean && mvn install
+  ```
+
 ## Implementation Patterns
 ### State Management
 - Implement state containers (e.g., GameState, Player) as immutable where possible
