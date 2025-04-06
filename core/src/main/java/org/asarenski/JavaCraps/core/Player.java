@@ -73,6 +73,15 @@ public class Player {
         return balance <= 0;
     }
 
+    /**
+     * Copies the state from another player instance.
+     * @param other The player to copy state from
+     */
+    public void copyState(Player other) {
+        this.balance = other.balance;
+        this.currentBet = other.currentBet;
+    }
+
     // Getters
     public int getBalance() {
         return balance;

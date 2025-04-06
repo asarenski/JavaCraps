@@ -27,6 +27,86 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
 ## Module Creation Guidelines
 [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)
 
+## Implementation Patterns
+### State Management
+- Implement state containers (e.g., GameState, Player) as immutable where possible
+- Use dedicated synchronization methods for state sharing:
+  ```java
+  public void copyState(Player other) {
+      this.balance = other.balance;
+      this.currentBet = other.currentBet;
+  }
+  ```
+- Validate state transitions using dedicated validator classes
+- Document state invariants in class/method JavaDoc
+
+### Controller Implementation
+- Use composition over inheritance for component coordination
+- Implement validators as separate classes for reusability:
+  ```java
+  public class MoveValidator {
+      private final GameState state;
+      private final Player player;
+      // Validation methods...
+  }
+  ```
+- Handle state synchronization in controller methods:
+  ```java
+  public void resetRound() {
+      gameEngine.resetGame();
+      gameEngine.getPlayer().copyState(player);
+  }
+  ```
+- Throw specific exceptions for invalid operations
+
+### Testing Patterns
+- Use `@BeforeEach` for test state setup
+- Implement repeated tests for random operations:
+  ```java
+  @RepeatedTest(100)
+  void testMultipleRollsStayInValidRange() {
+      // Test implementation
+  }
+  ```
+- Test state synchronization:
+  ```java
+  @Test
+  void testStateSync() {
+      player.placeBet(10);
+      gameEngine.getPlayer().copyState(player);
+      assertEquals(player.getBalance(), gameEngine.getPlayer().getBalance());
+  }
+  ```
+- Test both valid and invalid game flows
+
+## Module Creation Guidelines
+[module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)
+
+## State Management
+- Each module should maintain its own state independently
+- When sharing state between modules:
+  - Use clear ownership boundaries
+  - Implement state synchronization methods (e.g., `copyState`)
+  - Document state dependencies and synchronization requirements
+  - Validate state consistency in tests
+
+## Controller Design
+- Controllers should:
+  - Coordinate between core components
+  - Validate game actions using dedicated validators
+  - Maintain state consistency across components
+  - Provide clear, well-documented public APIs
+  - Handle errors gracefully with appropriate exceptions
+  - Include comprehensive test coverage
+
+## Testing Guidelines
+- Test both success and failure cases
+- Verify state consistency after operations
+- Use repeated tests for randomized operations
+- Test edge cases and invalid inputs
+- Ensure proper cleanup in test teardown
+- Test state synchronization between modules
+
 
 
 

@@ -30,15 +30,15 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 
 ### 3. Game Logic (Controller)
 
-- [ ] Create `GameController` class
-  - [ ] Add JavaDoc documentation
-  - [ ] Initialize player and game state
-  - [ ] Prompt for and validate bet
-  - [ ] Roll dice and evaluate outcome
-  - [ ] Update balance and display result
-  - [ ] Reset or end game based on outcome
-  - [ ] Implement unit tests for game flow
-  - [ ] Test edge cases (invalid bets, game end conditions)
+- [x] Create `GameController` class
+  - [x] Add JavaDoc documentation
+  - [x] Initialize player and game state
+  - [x] Prompt for and validate bet
+  - [x] Roll dice and evaluate outcome
+  - [x] Update balance and display result
+  - [x] Reset or end game based on outcome
+  - [x] Implement unit tests for game flow
+  - [x] Test edge cases (invalid bets, game end conditions)
 
 ### 4. Terminal UI (View)
 
@@ -63,8 +63,8 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 
 - [x] Write unit tests for:
   - [x] Dice roll range (2–12)
-  - [ ] GameState transitions
-  - [ ] Player bet constraints
+  - [x] GameState transitions
+  - [x] Player bet constraints
   - [ ] Input validation
   - [ ] Game flow scenarios
 - [ ] Write integration tests for:
