@@ -15,8 +15,8 @@ You are a Java expert.
 - Module-specific dependencies are declared in their respective POMs
 - Inter-module dependencies use `${project.version}` for version management
 
-## When asked to code a task
-Review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc) when you are asked to code a task from [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc).
+## When asked to implement a task
+- Always review [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc) when asked to implement a task.
 
 ## Project Structure
 Review [project-structure.mdc](mdc:.cursor/specifications/project-structure.mdc) for project struture.

@@ -4,7 +4,12 @@ globs:
 alwaysApply: false
 ---
 ## Implementation Tasks
-Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc) first.
+This file lists the implementation tasks. Each implementation task consists of a set of coding steps listed in [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc).
+
+Always review [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc):
+- At start of task implementation.
+- After each step listed in [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc)
+- After updating any of the tasks listed here.
 
 ### 1. Project Setup
 
