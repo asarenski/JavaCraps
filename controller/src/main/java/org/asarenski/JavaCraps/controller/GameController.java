@@ -70,7 +70,9 @@ public class GameController {
         if (!moveValidator.canRoll()) {
             throw new IllegalStateException("Cannot roll dice at this time");
         }
-        return gameEngine.rollDice();
+        int result = gameEngine.rollDice();
+        player.copyState(gameEngine.getPlayer());
+        return result;
     }
 
     /**
@@ -94,7 +96,7 @@ public class GameController {
      * @return true if the round is over, false otherwise
      */
     public boolean isRoundOver() {
-        return gameEngine.isGameOver();
+        return gameEngine.getGameState().getGameStatus() != GameState.Status.PLAYING;
     }
 
     /**
