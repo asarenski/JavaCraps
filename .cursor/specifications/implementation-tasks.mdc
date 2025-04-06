@@ -42,13 +42,13 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 
 ### 4. Terminal UI (View)
 
-- [ ] Create `TerminalView` class
-  - [ ] Add JavaDoc documentation
-  - [ ] Display game state and prompt for input
-  - [ ] Validate and return input
-  - [ ] Show win/lose messages
-  - [ ] Implement unit tests for input validation
-  - [ ] Test display formatting
+- [x] Create `TerminalView` class
+  - [x] Add JavaDoc documentation
+  - [x] Display game state and prompt for input
+  - [x] Validate and return input
+  - [x] Show win/lose messages
+  - [x] Implement unit tests for input validation
+  - [x] Test display formatting
 
 ### 5. Integration & Game Loop
 
@@ -65,8 +65,8 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
   - [x] Dice roll range (2–12)
   - [x] GameState transitions
   - [x] Player bet constraints
-  - [ ] Input validation
-  - [ ] Game flow scenarios
+  - [x] Input validation
+  - [x] Game flow scenarios
 - [ ] Write integration tests for:
   - [ ] Complete game flow
   - [ ] Win/lose conditions
