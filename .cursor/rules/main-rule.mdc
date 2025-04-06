@@ -6,27 +6,6 @@ alwaysApply: true
 # Main Rule
 You are a Java expert.
 
-## Build Configuration
-- Java Version: 21
-- Maven multi-module project
-
-## Dependencies
-- Core dependencies are managed in the parent POM
-- Module-specific dependencies are declared in their respective POMs
-- Inter-module dependencies use `${project.version}` for version management
-
-## When asked to implement a task
-- Always review [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc) when asked to implement a task.
-
-## Project Structure
-Review [project-structure.mdc](mdc:.cursor/specifications/project-structure.mdc) for project struture.
-
-## Project Specifications
-Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc) for project specifications.
-
-## Module Creation Guidelines
-[module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)
-
 ## Tool Call Guidelines
 ### Git Commits
 - Keep commit messages single-line when using run_terminal_cmd
@@ -67,7 +46,29 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   cd dir && mvn clean && mvn install
   ```
 
-## Implementation Patterns
+## Project Setup
+### Build Configuration
+- Java Version: 21
+- Maven multi-module project
+
+### Dependencies
+- Core dependencies are managed in the parent POM
+- Module-specific dependencies are declared in their respective POMs
+- Inter-module dependencies use `${project.version}` for version management
+
+### Project Structure
+Review [project-structure.mdc](mdc:.cursor/specifications/project-structure.mdc) for project structure.
+
+### Project Specifications
+Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc) for project specifications.
+
+### Module Creation
+Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module creation guidelines.
+
+## Implementation Guidelines
+### Task Implementation
+- Always review [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc) when asked to implement a task.
+
 ### State Management
 - Implement state containers (e.g., GameState, Player) as immutable where possible
 - Use dedicated synchronization methods for state sharing:
@@ -77,6 +78,14 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
       this.currentBet = other.currentBet;
   }
   ```
+- Each module should maintain its own state independently
+- When sharing state between modules:
+  - Use clear ownership boundaries
+  - Implement state synchronization methods (e.g., `copyState`)
+  - Document state dependencies and synchronization requirements
+  - Validate state consistency in tests
+  - Ensure state synchronization after state-changing operations
+  - Use appropriate state checks (e.g., game status vs game over)
 - Validate state transitions using dedicated validator classes
 - Document state invariants in class/method JavaDoc
 - Ensure state synchronization happens in the correct order:
@@ -108,7 +117,7 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   }
   ```
 
-### Controller Implementation
+### Controller Design
 - Use composition over inheritance for component coordination
 - Implement validators as separate classes for reusability:
   ```java
@@ -136,10 +145,19 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   - Game engine owns the game logic
   - Player owns player state
   - Validators own validation logic
+- Controllers should:
+  - Coordinate between core components
+  - Validate game actions using dedicated validators
+  - Maintain state consistency across components
+  - Provide clear, well-documented public APIs
+  - Handle errors gracefully with appropriate exceptions
+  - Include comprehensive test coverage
 
-### Testing Patterns
+### Testing Guidelines
 - Use `@BeforeEach` for test state setup
-- Implement repeated tests for random operations:
+- Test both success and failure cases
+- Verify state consistency after operations
+- Use repeated tests for randomized operations:
   ```java
   @RepeatedTest(100)
   void testMultipleRollsStayInValidRange() {
@@ -155,7 +173,6 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
       assertEquals(player.getBalance(), gameEngine.getPlayer().getBalance());
   }
   ```
-- Test both valid and invalid game flows
 - Test error handling:
   ```java
   @Test
@@ -164,47 +181,6 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
       assertThrows(IllegalStateException.class, () -> controller.roll());
   }
   ```
-
-## Module Creation Guidelines
-[module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)
-
-## State Management
-- Each module should maintain its own state independently
-- When sharing state between modules:
-  - Use clear ownership boundaries
-  - Implement state synchronization methods (e.g., `copyState`)
-  - Document state dependencies and synchronization requirements
-  - Validate state consistency in tests
-  - Ensure state synchronization after state-changing operations
-  - Use appropriate state checks (e.g., game status vs game over)
-  - Example state synchronization pattern:
-    ```java
-    public int performStateChangingOperation() {
-        int result = gameEngine.operation();
-        player.copyState(gameEngine.getPlayer());
-        return result;
-    }
-    ```
-  - Example state validation pattern:
-    ```java
-    public boolean checkGameState() {
-        return gameState.getStatus() != Status.PLAYING;  // Check specific state
-    }
-    ```
-
-## Controller Design
-- Controllers should:
-  - Coordinate between core components
-  - Validate game actions using dedicated validators
-  - Maintain state consistency across components
-  - Provide clear, well-documented public APIs
-  - Handle errors gracefully with appropriate exceptions
-  - Include comprehensive test coverage
-
-## Testing Guidelines
-- Test both success and failure cases
-- Verify state consistency after operations
-- Use repeated tests for randomized operations
 - Test edge cases and invalid inputs
 - Ensure proper cleanup in test teardown
 - Test state synchronization between modules
