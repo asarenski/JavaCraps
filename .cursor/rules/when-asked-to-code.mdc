@@ -1,0 +1,15 @@
+---
+description: Always request this when asked to code a task.
+globs: 
+alwaysApply: false
+---
+# When asked to code a task
+When you are asked to code a task from [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc):
+1. Review the @main-project-specifications.mdc
+2. Identify the task in @implementation-tasks.mdc
+3. Write the code
+4. Ensure proper module dependencies are declared
+5. Compile with `mvn clean verify`
+6. Run unit tests with `mvn test`
+7. Mark the task with an "x", example:`- [x] example task`
+8. Commit changes

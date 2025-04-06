@@ -4,6 +4,7 @@ globs:
 alwaysApply: false
 ---
 ## Implementation Tasks
+Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc) first.
 
 ### 1. Project Setup
 
