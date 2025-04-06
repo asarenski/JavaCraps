@@ -18,6 +18,6 @@ When you are asked to code a task from [implementation-tasks.mdc](mdc:.cursor/sp
 7. Run unit tests with `mvn test`
 8. Mark the task with an "x" in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
 9. Commit changes
-10. Wait for user instruction before proceeding to next task
+10. Wait for user instruction before proceeding to next implementation task
 
-Note: All steps must be completed in order. Do not skip steps or proceed to the next task until explicitly instructed by the user.
+Note: Steps 1-9 should be executed automatically in sequence. Only pause at step 10 to wait for user instruction on which implementation task to tackle next. This ensures efficient workflow while still maintaining user control over task selection.
