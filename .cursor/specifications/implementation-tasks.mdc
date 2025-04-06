@@ -57,10 +57,10 @@ Always review [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc):
 
 ### 5. Integration & Game Loop
 
-- [ ] Create `Main` class to wire everything
-  - [ ] Add JavaDoc documentation
-  - [ ] Instantiate `GameController`
-  - [ ] Loop until game ends (win/lose)
+- [x] Create `Main` class to wire everything
+  - [x] Add JavaDoc documentation
+  - [x] Instantiate `GameController`
+  - [x] Loop until game ends (win/lose)
   - [x] Add integration tests
   - [x] Test full game scenarios
 
@@ -74,14 +74,23 @@ Always review [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc):
   - [x] Game flow scenarios
 - [ ] Write integration tests for:
   - [x] Complete game flow
-  - [ ] Win/lose conditions
-  - [ ] Error handling
+  - [x] Win/lose conditions
+  - [x] Error handling
 
 ### 7. (Optional) Polish
 
 - [ ] Implement manual reset/restart game feature
   - [ ] Add documentation
   - [ ] Test reset functionality
+  - [ ] Add command-line flag for auto-restart
+  - [ ] Add confirmation prompt for reset
 - [ ] Add ASCII dice visuals or color text output
   - [ ] Add documentation
   - [ ] Test display formatting
+  - [ ] Create ASCII art for dice faces
+  - [ ] Add color-coded win/loss statistics
+- [ ] Enhance user experience
+  - [ ] Add betting history display
+  - [ ] Add session statistics (wins/losses)
+  - [ ] Add help command during gameplay
+  - [ ] Add configurable color schemes
