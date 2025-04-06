@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+## Evaluation and Success Criteria
+
+### Evaluation Criteria
+
+- **Functional Correctness**
+  - [ ] All game rules are implemented according to official Craps logic
+  - [ ] Bet handling, balance updates, and win/loss states behave correctly
+  - [ ] Game state transitions (Come Out → Point → Win/Lose) function reliably
+
+- **User Experience**
+  - [ ] Clear and intuitive terminal prompts and messages
+  - [ ] Error handling for invalid inputs is user-friendly
+  - [ ] Game flow is smooth and responsive
+
+- **Technical Quality**
+  - [ ] Code follows Java best practices and MVC separation of concerns
+  - [ ] Unit tests pass and cover major logic paths
+  - [ ] Project builds and runs without issues on standard Java environments
+
+- **Performance**
+  - [ ] Dice rolls are statistically fair
+  - [ ] No memory or runtime issues during multiple game loops
+
+### Success Criteria
+
+- [ ] MVP delivers a fully playable terminal-based Craps game
+- [ ] Player can win or lose based on balance reaching thresholds
+- [ ] All major requirements in the "Must Have" list are satisfied

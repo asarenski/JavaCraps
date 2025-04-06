@@ -1,0 +1,92 @@
+---
+description: Request when coding.
+globs: 
+alwaysApply: false
+---
+## Implementation Tasks
+
+### 1. Project Setup
+
+- [ ] Initialize a new Maven project:
+  - Group ID: `com.javacraps`
+  - Artifact ID: `javacraps`
+  - Version: `1.0-SNAPSHOT`
+- [ ] Set up standard Maven directory structure:
+  - [ ] `src/main/java/com/javacraps/...`
+  - [ ] `src/test/java/com/javacraps/...`
+
+### 2. Implement Core Model
+
+- [ ] Create `Player` class for handling bets and balance
+- [ ] Create `Dice` utility class to simulate rolling
+- [ ] Create `GameState` class with enums `GamePhase` and `GameStatus`
+
+### 3. Game Logic (Controller)
+
+- [ ] Create `GameController` class
+  - [ ] Initialize player and game state
+  - [ ] Prompt for and validate bet
+  - [ ] Roll dice and evaluate outcome
+  - [ ] Update balance and display result
+  - [ ] Reset or end game based on outcome
+
+### 4. Terminal UI (View)
+
+- [ ] Create `TerminalView` class
+  - [ ] Display game state and prompt for input
+  - [ ] Validate and return input
+  - [ ] Show win/lose messages
+
+### 5. Integration & Game Loop
+
+- [ ] Create `Main` class to wire everything
+  - [ ] Instantiate `GameController`
+  - [ ] Loop until game ends (win/lose)
+
+### 6. Testing
+
+- [ ] Write unit tests for:
+  - [ ] Dice roll range (2–12)
+  - [ ] GameState transitions
+  - [ ] Player bet constraints
+- [ ] (Optional) Use JUnit framework
+
+### 7. (Optional) Polish
+
+- [ ] Implement manual reset/restart game feature
+- [ ] Add ASCII dice visuals or color text output
+
+## Milestones
+
+### Milestone 1: Project Bootstrapping
+- [ ] Set up Maven project structure
+- [ ] Verify project builds and runs a basic `Main` class
+
+### Milestone 2: Core Game Model
+- [ ] Implement and test `Player` class
+- [ ] Implement and test `Dice` class
+- [ ] Implement and test `GameState` with state transitions
+
+### Milestone 3: Game Logic Controller
+- [ ] Implement `GameController` with basic game loop
+- [ ] Integrate with `GameState` and `Player`
+- [ ] Add test coverage for major logic branches
+
+### Milestone 4: Terminal User Interface
+- [ ] Implement `TerminalView` with input/output
+- [ ] Handle user input validation and messaging
+- [ ] Connect view with controller to play full game
+
+### Milestone 5: Integration and Flow Testing
+- [ ] Complete full playthrough testing (win/loss paths)
+- [ ] Fix edge cases (e.g., betting more than balance, invalid input)
+
+### Milestone 6: Polish and Optional Features
+- [ ] Add ASCII visuals or simple terminal effects
+- [ ] Add restart option after game ends
+- [ ] Final code cleanup and documentation
+
+### Milestone 7: Release MVP
+- [ ] Final user testing
+- [ ] Tag `v1.0` release
+- [ ] Deliver project package or deploy as CLI tool

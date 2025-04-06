@@ -10,6 +10,15 @@ You are a Java expert.
 - Java Version: 21
 - Maven multi-module project
 
+## When asked to code a task
+1. Review the [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc)
+2. Identify the task in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
+3. Write the code
+5. compile
+6. run unit tests
+7. Mark the task with an "x", example:`- [x] example task`
+8. commit
+
 ## Project Specifications
 [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc)
 
