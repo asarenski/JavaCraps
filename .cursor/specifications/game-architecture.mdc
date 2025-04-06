@@ -9,7 +9,7 @@ alwaysApply: false
 
 We will use a simple MVC pattern implemented in Java:
 - **Model**: `GameState`, `Player`, `Bet`, `Dice`, etc.
-- **View**: Command-line UI or simple Swing GUI
+- **View**: Command-line UI
 - **Controller**: Manages game phases, user input, and transitions
 
 ## Method

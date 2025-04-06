@@ -7,15 +7,15 @@ alwaysApply: false
 
 ### 1. Project Setup
 
-- [ ] Initialize a new Maven project:
+- [x] Initialize a new Maven project:
   - Group ID: `com.javacraps`
   - Artifact ID: `javacraps`
   - Version: `1.0-SNAPSHOT`
-- [ ] Set up standard Maven directory structure:
-  - [ ] `src/main/java/com/javacraps/...`
-  - [ ] `src/test/java/com/javacraps/...`
+- [x] Set up standard Maven directory structure:
+  - [x] `src/main/java/com/javacraps/...`
+  - [x] `src/test/java/com/javacraps/...`
 
-### 2. Implement Core Model
+### 2. Implement Core Models
 
 - [ ] Create `Player` class for handling bets and balance
 - [ ] Create `Dice` utility class to simulate rolling
@@ -59,7 +59,7 @@ alwaysApply: false
 ## Milestones
 
 ### Milestone 1: Project Bootstrapping
-- [ ] Set up Maven project structure
+- [x] Set up Maven project structure
 - [ ] Verify project builds and runs a basic `Main` class
 
 ### Milestone 2: Core Game Model
