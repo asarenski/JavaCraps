@@ -18,9 +18,9 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 
 ### 2. Implement Core Models
 
-- [ ] Create `Player` class for handling bets and balance
-- [ ] Create `Dice` utility class to simulate rolling
-- [ ] Create `GameState` class with enums `GamePhase` and `GameStatus`
+- [x] Create `Player` class for handling bets and balance
+- [x] Create `Dice` utility class to simulate rolling
+- [x] Create `GameState` class with enums `GamePhase` and `GameStatus`
 
 ### 3. Game Logic (Controller)
 
@@ -46,8 +46,8 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 
 ### 6. Testing
 
-- [ ] Write unit tests for:
-  - [ ] Dice roll range (2–12)
+- [x] Write unit tests for:
+  - [x] Dice roll range (2–12)
   - [ ] GameState transitions
   - [ ] Player bet constraints
 - [ ] (Optional) Use JUnit framework
@@ -61,12 +61,12 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 
 ### Milestone 1: Project Bootstrapping
 - [x] Set up Maven project structure
-- [ ] Verify project builds and runs a basic `Main` class
+- [x] Verify project builds and runs a basic `Main` class
 
 ### Milestone 2: Core Game Model
-- [ ] Implement and test `Player` class
-- [ ] Implement and test `Dice` class
-- [ ] Implement and test `GameState` with state transitions
+- [x] Implement and test `Player` class
+- [x] Implement and test `Dice` class
+- [x] Implement and test `GameState` with state transitions
 
 ### Milestone 3: Game Logic Controller
 - [ ] Implement `GameController` with basic game loop
