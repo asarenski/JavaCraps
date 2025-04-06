@@ -35,11 +35,11 @@ public class MainTest {
         // 2. Enter to roll
         // 3. Enter to roll again (in case we enter point phase)
         // 4. No to play again
-        String input = "10\n\n\nno\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        String input = "10\n\n\n\n\n\n\nno\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         
         // Run the game with default player name and bankroll
-        int exitCode = Main.startGame(new String[]{});
+        int exitCode = Main.startGame(new String[]{}, inputStream);
         assert(exitCode == 0) : "Game should exit with code 0";
         
         String output = outContent.toString();
@@ -61,11 +61,11 @@ public class MainTest {
         // 2. Enter to roll
         // 3. Enter to roll again (in case we enter point phase)
         // 4. No to play again
-        String input = "10\n\n\nno\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        String input = "10\n\n\n\n\n\n\nno\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         
         // Run the game with custom player name and bankroll
-        int exitCode = Main.startGame(new String[]{"--player", "TestPlayer", "--bankroll", "200"});
+        int exitCode = Main.startGame(new String[]{"--player", "TestPlayer", "--bankroll", "200"}, inputStream);
         assert(exitCode == 0) : "Game should exit with code 0";
         
         String output = outContent.toString();

@@ -3,6 +3,7 @@ package org.asarenski.JavaCraps.cli;
 import org.asarenski.JavaCraps.core.GameState;
 import org.asarenski.JavaCraps.core.Player;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**
@@ -17,8 +18,19 @@ public class TerminalView {
 
     private final Scanner scanner;
 
+    /**
+     * Creates a new TerminalView with System.in as the input source.
+     */
     public TerminalView() {
-        this.scanner = new Scanner(System.in);
+        this(System.in);
+    }
+
+    /**
+     * Creates a new TerminalView with a custom input source.
+     * @param inputStream The input stream to read from
+     */
+    public TerminalView(InputStream inputStream) {
+        this.scanner = new Scanner(inputStream);
     }
 
     /**

@@ -7,6 +7,8 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
+import java.io.InputStream;
+
 @Command(
     name = "craps",
     mixinStandardHelpOptions = true,
@@ -25,7 +27,15 @@ public class CrapsGameCLI implements Runnable {
     private GameController controller;
 
     public CrapsGameCLI() {
-        this.view = new TerminalView();
+        this(System.in);
+    }
+
+    /**
+     * Creates a new CrapsGameCLI with a custom input source.
+     * @param inputStream The input stream to read from
+     */
+    public CrapsGameCLI(InputStream inputStream) {
+        this.view = new TerminalView(inputStream);
     }
 
     public static void main(String[] args) {
