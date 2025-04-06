@@ -8,11 +8,26 @@ public class Player {
     private static final int MINIMUM_BET = 5;
     private static final int WINNING_BALANCE = 1000;
 
+    private final String name;
     private int balance;
     private int currentBet;
 
+    /**
+     * Creates a new player with default name and starting balance.
+     */
     public Player() {
-        reset();
+        this("Player", STARTING_BALANCE);
+    }
+
+    /**
+     * Creates a new player with the specified name and initial balance.
+     * @param name The player's name
+     * @param initialBalance The player's initial balance
+     */
+    public Player(String name, int initialBalance) {
+        this.name = name;
+        this.balance = initialBalance;
+        this.currentBet = 0;
     }
 
     /**
@@ -80,6 +95,14 @@ public class Player {
     public void copyState(Player other) {
         this.balance = other.balance;
         this.currentBet = other.currentBet;
+    }
+
+    /**
+     * Gets the player's name.
+     * @return The player's name
+     */
+    public String getName() {
+        return name;
     }
 
     // Getters

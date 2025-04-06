@@ -1,7 +1,7 @@
 ---
-description: Always request this when asked to code a task.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 # When asked to code a task
 When you are asked to code a task from [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
@@ -9,15 +9,42 @@ When you are asked to code a task from [implementation-tasks.mdc](mdc:.cursor/sp
 1. Review the [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc) to understand requirements
 2. Identify the specific task in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
 3. Review any related specifications (e.g., architecture, game flow, etc.)
-4. Implement the code:
+4. Before implementation:
+   - Review existing code related to the task
+   - Check for dependencies on other tasks
+   - Identify test requirements
+5. Implement the code:
    - Create new files or modify existing ones
    - Add necessary tests
-   - Add proper documentation
-5. Ensure proper module dependencies are declared
-6. Compile with `mvn clean verify`
-7. Run unit tests with `mvn test`
-8. Mark the task with an "x" in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
-9. Commit changes
-10. Wait for user instruction before proceeding to next implementation task
+   - Add proper documentation (JavaDoc and inline comments)
+   - Follow project's coding standards
+6. Ensure proper module dependencies are declared:
+   - Check pom.xml for required dependencies
+   - Verify version compatibility
+   - Add new dependencies if needed
+7. Compile with `mvn clean verify`:
+   - Address any compilation errors
+   - Fix any dependency conflicts
+   - Ensure all resources are properly included
+8. Run unit tests with `mvn test`:
+   - Verify all tests pass
+   - Check test coverage
+   - Debug any test failures
+   - Add missing test cases if gaps are found
+9. Mark the task with an "x" in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc):
+   - Update parent tasks if all subtasks complete
+   - Keep task descriptions up to date
+10. Commit changes:
+    - Include clear commit message
+    - Reference related tasks/issues
+    - Include test results if relevant
+11. Wait for user instruction before proceeding to next implementation task
 
-Note: Steps 1-9 should be executed automatically in sequence. Only pause at step 10 to wait for user instruction on which implementation task to tackle next. This ensures efficient workflow while still maintaining user control over task selection.
+Note: Steps 1-10 should be executed automatically in sequence. Only pause at step 11 to wait for user instruction on which implementation task to tackle next. This ensures efficient workflow while still maintaining user control over task selection.
+
+Important Considerations:
+- Always verify test coverage before marking a task complete
+- Document any assumptions or design decisions made
+- Keep related documentation in sync with code changes
+- Consider impact on existing functionality
+- Follow error handling and logging standards

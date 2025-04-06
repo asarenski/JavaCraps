@@ -12,7 +12,7 @@ import org.asarenski.JavaCraps.core.MoveValidator;
 public class GameController {
     private final GameEngine gameEngine;
     private final Player player;
-    private final MoveValidator moveValidator;
+    private MoveValidator moveValidator;
 
     /**
      * Creates a new GameController with the specified player.
@@ -55,10 +55,16 @@ public class GameController {
      * @return true if the round was started successfully, false otherwise
      */
     public boolean startNewRound(double betAmount) {
+        resetRound();
         if (!moveValidator.isValidBet((int)betAmount)) {
             return false;
         }
-        return player.placeBet((int)betAmount);
+        if (!player.placeBet((int)betAmount)) {
+            return false;
+        }
+        gameEngine.getPlayer().copyState(player);
+        this.moveValidator = new MoveValidator(gameEngine.getGameState(), gameEngine.getPlayer());
+        return true;
     }
 
     /**

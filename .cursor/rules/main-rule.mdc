@@ -39,6 +39,34 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   ```
 - Validate state transitions using dedicated validator classes
 - Document state invariants in class/method JavaDoc
+- Ensure state synchronization happens in the correct order:
+  ```java
+  public boolean startNewRound(double betAmount) {
+      resetRound();  // Reset state first
+      if (!moveValidator.isValidBet((int)betAmount)) {
+          return false;
+      }
+      if (!player.placeBet((int)betAmount)) {
+          return false;
+      }
+      // Update game engine state after successful bet
+      gameEngine.getPlayer().copyState(player);
+      // Create new validator with updated state
+      this.moveValidator = new MoveValidator(gameEngine.getGameState(), gameEngine.getPlayer());
+      return true;
+  }
+  ```
+- Handle state validation failures gracefully:
+  ```java
+  try {
+      int roll = controller.roll();
+      // Process roll result
+  } catch (IllegalStateException e) {
+      // Handle invalid state gracefully
+      view.showRoundOutcome(false, bet);
+      return;
+  }
+  ```
 
 ### Controller Implementation
 - Use composition over inheritance for component coordination
@@ -58,6 +86,16 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   }
   ```
 - Throw specific exceptions for invalid operations
+- Ensure validators are updated when state changes:
+  ```java
+  // After state changes that affect validation
+  this.moveValidator = new MoveValidator(updatedState, updatedPlayer);
+  ```
+- Maintain clear state ownership:
+  - Controller owns the coordination
+  - Game engine owns the game logic
+  - Player owns player state
+  - Validators own validation logic
 
 ### Testing Patterns
 - Use `@BeforeEach` for test state setup
@@ -78,6 +116,14 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   }
   ```
 - Test both valid and invalid game flows
+- Test error handling:
+  ```java
+  @Test
+  void testInvalidStateHandling() {
+      // Set up invalid state
+      assertThrows(IllegalStateException.class, () -> controller.roll());
+  }
+  ```
 
 ## Module Creation Guidelines
 [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)
@@ -89,7 +135,7 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   - Implement state synchronization methods (e.g., `copyState`)
   - Document state dependencies and synchronization requirements
   - Validate state consistency in tests
-    - Ensure state synchronization after state-changing operations
+  - Ensure state synchronization after state-changing operations
   - Use appropriate state checks (e.g., game status vs game over)
   - Example state synchronization pattern:
     ```java

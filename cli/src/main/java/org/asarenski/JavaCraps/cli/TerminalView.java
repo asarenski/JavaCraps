@@ -38,7 +38,7 @@ public class TerminalView {
      */
     public void displayGameState(Player player, GameState gameState) {
         System.out.println(SEPARATOR);
-        System.out.printf("Balance: $%d%n", player.getBalance());
+        System.out.printf("%s's Balance: $%d%n", player.getName(), player.getBalance());
         System.out.printf("Current Phase: %s%n", formatPhase(gameState.getCurrentPhase()));
         if (gameState.getCurrentPhase() == GameState.Phase.POINT_PHASE) {
             System.out.printf("Point is: %d%n", gameState.getPoint());

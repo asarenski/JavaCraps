@@ -61,8 +61,8 @@ Always review [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc):
   - [ ] Add JavaDoc documentation
   - [ ] Instantiate `GameController`
   - [ ] Loop until game ends (win/lose)
-  - [ ] Add integration tests
-  - [ ] Test full game scenarios
+  - [x] Add integration tests
+  - [x] Test full game scenarios
 
 ### 6. Testing
 
@@ -73,7 +73,7 @@ Always review [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc):
   - [x] Input validation
   - [x] Game flow scenarios
 - [ ] Write integration tests for:
-  - [ ] Complete game flow
+  - [x] Complete game flow
   - [ ] Win/lose conditions
   - [ ] Error handling
 
