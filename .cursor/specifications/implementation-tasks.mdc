@@ -19,30 +19,45 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 ### 2. Implement Core Models
 
 - [x] Create `Player` class for handling bets and balance
+  - [x] Add JavaDoc documentation
+  - [x] Implement unit tests for bet validation and balance management
 - [x] Create `Dice` utility class to simulate rolling
+  - [x] Add JavaDoc documentation
+  - [x] Implement unit tests for roll range validation
 - [x] Create `GameState` class with enums `GamePhase` and `GameStatus`
+  - [x] Add JavaDoc documentation
+  - [x] Implement unit tests for state transitions
 
 ### 3. Game Logic (Controller)
 
 - [ ] Create `GameController` class
+  - [ ] Add JavaDoc documentation
   - [ ] Initialize player and game state
   - [ ] Prompt for and validate bet
   - [ ] Roll dice and evaluate outcome
   - [ ] Update balance and display result
   - [ ] Reset or end game based on outcome
+  - [ ] Implement unit tests for game flow
+  - [ ] Test edge cases (invalid bets, game end conditions)
 
 ### 4. Terminal UI (View)
 
 - [ ] Create `TerminalView` class
+  - [ ] Add JavaDoc documentation
   - [ ] Display game state and prompt for input
   - [ ] Validate and return input
   - [ ] Show win/lose messages
+  - [ ] Implement unit tests for input validation
+  - [ ] Test display formatting
 
 ### 5. Integration & Game Loop
 
 - [ ] Create `Main` class to wire everything
+  - [ ] Add JavaDoc documentation
   - [ ] Instantiate `GameController`
   - [ ] Loop until game ends (win/lose)
+  - [ ] Add integration tests
+  - [ ] Test full game scenarios
 
 ### 6. Testing
 
@@ -50,12 +65,21 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
   - [x] Dice roll range (2–12)
   - [ ] GameState transitions
   - [ ] Player bet constraints
-- [ ] (Optional) Use JUnit framework
+  - [ ] Input validation
+  - [ ] Game flow scenarios
+- [ ] Write integration tests for:
+  - [ ] Complete game flow
+  - [ ] Win/lose conditions
+  - [ ] Error handling
 
 ### 7. (Optional) Polish
 
 - [ ] Implement manual reset/restart game feature
+  - [ ] Add documentation
+  - [ ] Test reset functionality
 - [ ] Add ASCII dice visuals or color text output
+  - [ ] Add documentation
+  - [ ] Test display formatting
 
 ## Milestones
 
@@ -72,22 +96,27 @@ Always review [when-asked-to-code.mdc](mdc:.cursor/rules/when-asked-to-code.mdc)
 - [ ] Implement `GameController` with basic game loop
 - [ ] Integrate with `GameState` and `Player`
 - [ ] Add test coverage for major logic branches
+- [ ] Document public API
 
 ### Milestone 4: Terminal User Interface
 - [ ] Implement `TerminalView` with input/output
 - [ ] Handle user input validation and messaging
 - [ ] Connect view with controller to play full game
+- [ ] Document user interface methods
 
 ### Milestone 5: Integration and Flow Testing
 - [ ] Complete full playthrough testing (win/loss paths)
 - [ ] Fix edge cases (e.g., betting more than balance, invalid input)
+- [ ] Document test scenarios
 
 ### Milestone 6: Polish and Optional Features
 - [ ] Add ASCII visuals or simple terminal effects
 - [ ] Add restart option after game ends
 - [ ] Final code cleanup and documentation
+- [ ] Review and update all JavaDocs
 
 ### Milestone 7: Release MVP
 - [ ] Final user testing
 - [ ] Tag `v1.0` release
 - [ ] Deliver project package or deploy as CLI tool
+- [ ] Complete user documentation
