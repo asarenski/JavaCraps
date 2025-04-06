@@ -89,6 +89,22 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
   - Implement state synchronization methods (e.g., `copyState`)
   - Document state dependencies and synchronization requirements
   - Validate state consistency in tests
+    - Ensure state synchronization after state-changing operations
+  - Use appropriate state checks (e.g., game status vs game over)
+  - Example state synchronization pattern:
+    ```java
+    public int performStateChangingOperation() {
+        int result = gameEngine.operation();
+        player.copyState(gameEngine.getPlayer());
+        return result;
+    }
+    ```
+  - Example state validation pattern:
+    ```java
+    public boolean checkGameState() {
+        return gameState.getStatus() != Status.PLAYING;  // Check specific state
+    }
+    ```
 
 ## Controller Design
 - Controllers should:
@@ -106,6 +122,29 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
 - Test edge cases and invalid inputs
 - Ensure proper cleanup in test teardown
 - Test state synchronization between modules
+- State validation testing patterns:
+  - Test state transitions and phase changes
+  - Verify state synchronization after operations
+  - Check specific state flags rather than derived conditions
+  - Example state validation test:
+    ```java
+    @Test
+    void testStateTransition() {
+        controller.startNewRound(10);
+        int roll = controller.roll();
+        
+        if (roll == 7 || roll == 11) {
+            assertTrue(controller.isRoundOver());
+            assertEquals(Status.WIN, controller.getGameState().getStatus());
+        } else if (roll == 2 || roll == 3 || roll == 12) {
+            assertTrue(controller.isRoundOver());
+            assertEquals(Status.LOSE, controller.getGameState().getStatus());
+        } else {
+            assertFalse(controller.isRoundOver());
+            assertEquals(Status.PLAYING, controller.getGameState().getStatus());
+        }
+    }
+    ```
 - Module-specific test execution:
   - Tests are organized by module (e.g., controller, core, cli)
   - Run specific tests using: `mvn test -Dtest=TestClass#testMethod`
