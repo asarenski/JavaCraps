@@ -10,17 +10,26 @@ You are a Java expert.
 - Java Version: 21
 - Maven multi-module project
 
+## Dependencies
+- Core dependencies are managed in the parent POM
+- Module-specific dependencies are declared in their respective POMs
+- Inter-module dependencies use `${project.version}` for version management
+
 ## When asked to code a task
 1. Review the [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc)
 2. Identify the task in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
 3. Write the code
-5. compile
-6. run unit tests
+4. Ensure proper module dependencies are declared
+5. Compile with `mvn clean verify`
+6. Run unit tests with `mvn test`
 7. Mark the task with an "x", example:`- [x] example task`
-8. commit
+8. Commit changes
+
+## Project Structure
+Review [project-structure.mdc](mdc:.cursor/specifications/project-structure.mdc) for project struture.
 
 ## Project Specifications
-[main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc)
+Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc) for project specifications.
 
 ## Module Creation Guidelines
 [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc)

@@ -4,9 +4,11 @@ globs:
 alwaysApply: false
 ---
 ## Module Creation Guidelines
+
 1. Directory Structure:
    - Create module directory: `mkdir -p module-name/src/main/java/org/asarenski/JavaCraps/module-name`
-   - Follow Java package convention: `com.asarenski.JavaCraps.[module-name]`
+   - Create test directory: `mkdir -p module-name/src/test/java/org/asarenski/JavaCraps/module-name`
+   - Follow Java package convention: `org.asarenski.JavaCraps.[module-name]`
 
 2. Module POM Configuration:
    ```xml
@@ -15,8 +17,19 @@ alwaysApply: false
        <artifactId>craps</artifactId>
        <version>1.0-SNAPSHOT</version>
    </parent>
+   
    <artifactId>[module-name]</artifactId>
    <name>JavaCraps [ModuleName]</name>
+   <description>Brief description of the module's purpose</description>
+
+   <dependencies>
+       <!-- Core module dependency (if needed) -->
+       <dependency>
+           <groupId>org.asarenski.JavaCraps</groupId>
+           <artifactId>core</artifactId>
+           <version>${project.version}</version>
+       </dependency>
+   </dependencies>
    ```
 
 3. Parent POM Updates:
@@ -28,3 +41,10 @@ alwaysApply: false
    ```
    - Ensure consistent Java version across modules
    - Use parent's properties for version management
+
+4. Module Dependencies:
+   - Always declare explicit dependencies
+   - Use `${project.version}` for inter-module dependencies
+   - Core module should have minimal external dependencies
+   - Controller module should depend on core
+   - CLI module should depend on core and controller

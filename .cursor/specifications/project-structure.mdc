@@ -6,9 +6,15 @@ alwaysApply: false
 # Project Structure
 
 ## Overview
-JavaCraps is organized as a Maven multi-module project with the following structure:
-<example>
+JavaCraps is organized as a Maven multi-module.
+- Parent Module: `craps` (artifactId)
+- Core Modules:
+  - `core`: Core game logic and domain models
+  - `controller`: Game state and flow management
+  - `cli`: Command-line interface
+  - `main`: Application entry point
 
+<example>
 ```
 JavaCraps/
 ├── .cursor/                    # IDE-specific config
