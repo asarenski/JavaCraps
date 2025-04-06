@@ -15,6 +15,7 @@
     <modules>
         <module>main</module>
         <module>core</module>
+        <module>cli</module>
     </modules>
 
     <properties>
