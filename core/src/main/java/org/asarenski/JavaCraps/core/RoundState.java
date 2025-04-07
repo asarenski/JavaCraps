@@ -1,9 +1,9 @@
 package org.asarenski.JavaCraps.core;
 
 /**
- * Represents the current state of a Craps game.
+ * Represents the current state of a Craps round.
  */
-public class GameState {
+public class RoundState {
     public enum Phase {
         COME_OUT_ROLL,
         POINT_PHASE
@@ -19,7 +19,7 @@ public class GameState {
     private Status gameStatus;
     private int point;
 
-    public GameState() {
+    public RoundState() {
         reset();
     }
 

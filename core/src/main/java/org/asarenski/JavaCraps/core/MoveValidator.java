@@ -4,11 +4,11 @@ package org.asarenski.JavaCraps.core;
  * Validates game moves and actions to ensure they follow game rules.
  */
 public class MoveValidator {
-    private final GameState gameState;
+    private final RoundState roundState;
     private final Player player;
 
-    public MoveValidator(GameState gameState, Player player) {
-        this.gameState = gameState;
+    public MoveValidator(RoundState roundState, Player player) {
+        this.roundState = roundState;
         this.player = player;
     }
 
@@ -24,7 +24,7 @@ public class MoveValidator {
         }
 
         // Check if game state allows betting
-        return gameState.getGameStatus() == GameState.Status.PLAYING;
+        return roundState.getGameStatus() == RoundState.Status.PLAYING;
     }
 
     /**
@@ -33,7 +33,7 @@ public class MoveValidator {
      */
     public boolean canRoll() {
         // Can only roll if the game is in progress and a bet has been placed
-        return gameState.getGameStatus() == GameState.Status.PLAYING 
+        return roundState.getGameStatus() == RoundState.Status.PLAYING 
             && player.getCurrentBet() > 0;
     }
 
@@ -48,6 +48,15 @@ public class MoveValidator {
         }
 
         // Game cannot continue if we're not in a valid game state
-        return gameState.getGameStatus() == GameState.Status.PLAYING;
+        return roundState.getGameStatus() == RoundState.Status.PLAYING;
+    }
+
+    public boolean canPlaceBet(int betAmount) {
+        return roundState.getGameStatus() == RoundState.Status.PLAYING
+                && player.canBet(betAmount);
+    }
+
+    public boolean canStartNewRound() {
+        return roundState.getGameStatus() == RoundState.Status.PLAYING;
     }
 } 

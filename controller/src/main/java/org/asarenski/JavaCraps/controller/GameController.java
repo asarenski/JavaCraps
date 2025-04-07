@@ -1,7 +1,7 @@
 package org.asarenski.JavaCraps.controller;
 
+import org.asarenski.JavaCraps.core.RoundState;
 import org.asarenski.JavaCraps.core.RoundEngine;
-import org.asarenski.JavaCraps.core.GameState;
 import org.asarenski.JavaCraps.core.Player;
 import org.asarenski.JavaCraps.core.MoveValidator;
 
@@ -21,7 +21,7 @@ public class GameController {
     public GameController(Player player) {
         this.player = player;
         this.roundEngine = new RoundEngine(player);
-        this.moveValidator = new MoveValidator(roundEngine.getGameState(), player);
+        this.moveValidator = new MoveValidator(roundEngine.getRoundState(), player);
     }
 
     /**
@@ -44,8 +44,8 @@ public class GameController {
      * Gets the current game state.
      * @return the current game state
      */
-    public GameState getGameState() {
-        return roundEngine.getGameState();
+    public RoundState getRoundState() {
+        return roundEngine.getRoundState();
     }
 
     /**
@@ -61,7 +61,7 @@ public class GameController {
         if (!player.placeBet((int)betAmount)) {
             return false;
         }
-        this.moveValidator = new MoveValidator(roundEngine.getGameState(), player);
+        this.moveValidator = new MoveValidator(roundEngine.getRoundState(), player);
         return true;
     }
 
@@ -82,15 +82,15 @@ public class GameController {
      * @return the point value, or 0 if in come out roll phase
      */
     public int getPoint() {
-        return roundEngine.getGameState().getPoint();
+        return roundEngine.getRoundState().getPoint();
     }
 
     /**
      * Checks if the game is in the point phase.
      * @return true if in point phase, false if in come out roll
      */
-    public boolean isInPointPhase() {
-        return roundEngine.getGameState().getCurrentPhase() == GameState.Phase.POINT_PHASE;
+    public boolean isPointPhase() {
+        return roundEngine.getRoundState().getCurrentPhase() == RoundState.Phase.POINT_PHASE;
     }
 
     /**
@@ -98,7 +98,7 @@ public class GameController {
      * @return true if the round is over, false otherwise
      */
     public boolean isRoundOver() {
-        return roundEngine.getGameState().getGameStatus() != GameState.Status.PLAYING;
+        return roundEngine.getRoundState().getGameStatus() != RoundState.Status.PLAYING;
     }
 
     /**

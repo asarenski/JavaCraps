@@ -3,6 +3,7 @@ package org.asarenski.JavaCraps.cli;
 import org.asarenski.JavaCraps.controller.GameController;
 import org.asarenski.JavaCraps.core.RoundEngine;
 import org.asarenski.JavaCraps.core.Player;
+import org.asarenski.JavaCraps.core.RoundState;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -73,7 +74,7 @@ public class CrapsGameCLI implements Runnable {
     }
 
     private void playRound() {
-        view.displayGameState(controller.getPlayer(), controller.getGameState());
+        view.displayGameState(controller.getPlayer(), controller.getRoundState());
         
         // Get bet
         int bet = view.getBetAmount(controller.getMinimumBet(), controller.getPlayer().getBalance());
@@ -83,7 +84,7 @@ public class CrapsGameCLI implements Runnable {
         
         // Start new round with bet
         if (!controller.startNewRound(bet)) {
-            view.showRoundOutcome(false, bet);
+            handleRoundOutcome();
             return;
         }
 
@@ -97,20 +98,24 @@ public class CrapsGameCLI implements Runnable {
                 // Roll the dice and get values
                 int roll = controller.roll();
                 int[] diceValues = controller.getRoundEngine().getDiceValues();
-                view.showRollResult(diceValues[0], diceValues[1], controller.getGameState());
+                view.showRollResult(diceValues[0], diceValues[1], controller.getRoundState());
                 
                 if (controller.isRoundOver()) {
-                    boolean won = controller.getGameState().getGameStatus() == 
-                        org.asarenski.JavaCraps.core.GameState.Status.WIN;
-                    view.showRoundOutcome(won, bet);
-                } else if (controller.isInPointPhase()) {
-                    view.displayGameState(controller.getPlayer(), controller.getGameState());
+                    handleRoundOutcome();
+                } else if (controller.isPointPhase()) {
+                    view.displayGameState(controller.getPlayer(), controller.getRoundState());
                 }
             } catch (IllegalStateException e) {
                 // If we can't roll, show the outcome and end the round
-                view.showRoundOutcome(false, bet);
+                handleRoundOutcome();
                 return;
             }
         }
+    }
+
+    private void handleRoundOutcome() {
+        boolean isWin = controller.getRoundState().getGameStatus() == RoundState.Status.WIN;
+        int betAmount = controller.getPlayer().getCurrentBet();
+        view.showRoundOutcome(isWin, betAmount);
     }
 } 

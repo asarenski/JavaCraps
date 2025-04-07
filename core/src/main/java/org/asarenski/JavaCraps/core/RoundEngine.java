@@ -1,15 +1,15 @@
 package org.asarenski.JavaCraps.core;
 
 /**
- * Core engine that manages a single round of Craps and coordinates between different components.
+ * Core game engine that handles game logic and state management.
  */
 public class RoundEngine {
-    private final GameState gameState;
+    private final RoundState roundState;
     private final Player player;
     private final Dice dice;
 
     public RoundEngine(Player player) {
-        this.gameState = new GameState();
+        this.roundState = new RoundState();
         this.player = player;
         this.dice = new Dice();
     }
@@ -18,7 +18,7 @@ public class RoundEngine {
      * Resets the round state, including game state and dice, but preserves player state.
      */
     public void resetRound() {
-        gameState.reset();
+        roundState.reset();
         dice.reset();
     }
 
@@ -37,7 +37,7 @@ public class RoundEngine {
      */
     public int rollDice() {
         int total = dice.roll();
-        Boolean outcome = gameState.checkOutcome(total);
+        Boolean outcome = roundState.checkOutcome(total);
         if (outcome != null) {
             player.updateBalance(outcome);
         }
@@ -57,14 +57,13 @@ public class RoundEngine {
      * @return true if the game is over, false otherwise
      */
     public boolean isGameOver() {
-        return player.hasWon() || player.hasLost() || 
-               gameState.getGameStatus() == GameState.Status.WIN || 
-               gameState.getGameStatus() == GameState.Status.LOSE;
+        return roundState.getGameStatus() == RoundState.Status.WIN ||
+                roundState.getGameStatus() == RoundState.Status.LOSE;
     }
 
     // Getters
-    public GameState getGameState() {
-        return gameState;
+    public RoundState getRoundState() {
+        return roundState;
     }
 
     public Player getPlayer() {

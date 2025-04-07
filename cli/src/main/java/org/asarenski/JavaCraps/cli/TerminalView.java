@@ -1,6 +1,6 @@
 package org.asarenski.JavaCraps.cli;
 
-import org.asarenski.JavaCraps.core.GameState;
+import org.asarenski.JavaCraps.core.RoundState;
 import org.asarenski.JavaCraps.core.Player;
 
 import java.io.InputStream;
@@ -46,14 +46,13 @@ public class TerminalView {
     /**
      * Displays the current game state including balance and phase.
      * @param player The current player
-     * @param gameState The current game state
+     * @param roundState The current game state
      */
-    public void displayGameState(Player player, GameState gameState) {
-        System.out.println(SEPARATOR);
-        System.out.printf("%s's Balance: $%d%n", player.getName(), player.getBalance());
-        System.out.printf("Current Phase: %s%n", formatPhase(gameState.getCurrentPhase()));
-        if (gameState.getCurrentPhase() == GameState.Phase.POINT_PHASE) {
-            System.out.printf("Point is: %d%n", gameState.getPoint());
+    public void displayGameState(Player player, RoundState roundState) {
+        System.out.println("\nGame Status:");
+        System.out.println("Balance: $" + player.getBalance());
+        if (roundState.getCurrentPhase() == RoundState.Phase.POINT_PHASE) {
+            System.out.println("Point: " + roundState.getPoint());
         }
         System.out.println(SEPARATOR);
     }
@@ -115,13 +114,14 @@ public class TerminalView {
      * Displays the result of a dice roll.
      * @param die1 First die value
      * @param die2 Second die value
-     * @param gameState Current game state
+     * @param roundState Current game state
      */
-    public void showRollResult(int die1, int die2, GameState gameState) {
+    public void showRollResult(int die1, int die2, RoundState roundState) {
         int total = die1 + die2;
+        System.out.println("\nRoll: " + die1 + " + " + die2 + " = " + total);
         String totalColor;
         
-        if (gameState.getCurrentPhase() == GameState.Phase.COME_OUT_ROLL) {
+        if (roundState.getCurrentPhase() == RoundState.Phase.COME_OUT_ROLL) {
             if (total == 7 || total == 11) {
                 totalColor = ANSI_GREEN;  // Natural win
             } else if (total == 2 || total == 3 || total == 12) {
@@ -130,7 +130,7 @@ public class TerminalView {
                 totalColor = ANSI_YELLOW; // Point established
             }
         } else { // Point Phase
-            if (total == gameState.getPoint()) {
+            if (total == roundState.getPoint()) {
                 totalColor = ANSI_GREEN;  // Made the point
             } else if (total == 7) {
                 totalColor = ANSI_RED;    // Seven out
@@ -207,7 +207,7 @@ public class TerminalView {
         }
     }
 
-    private String formatPhase(GameState.Phase phase) {
+    private String formatPhase(RoundState.Phase phase) {
         return ANSI_YELLOW + phase.toString().replace("_", " ") + ANSI_RESET;
     }
 
