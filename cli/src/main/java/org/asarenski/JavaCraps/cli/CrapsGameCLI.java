@@ -64,17 +64,17 @@ public class CrapsGameCLI implements Runnable {
         while (true) {
             playRound();
             
-            // Ask to play again first
-            if (!view.askPlayAgain()) {
-                break;
-            }
-            
-            // Then check if game is over
+            // Check if game is over
             if (controller.isGameSessionOver()) {
                 view.showGameOutcome(
                     controller.getPlayer().hasWon(),
                     controller.getPlayer().getBalance()
                 );
+                break;
+            }
+
+            // Ask to play again
+            if (!view.askPlayAgain()) {
                 break;
             }
             
