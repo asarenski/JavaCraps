@@ -11,20 +11,16 @@ alwaysApply: true
    - Review existing code related to the task
    - Check for dependencies on other tasks
    - Identify test requirements
-   - Analyze state management implications:
-     * Identify shared state between components
-     * Consider dependency injection opportunities
-     * Map out state ownership and synchronization needs
+   - Review state management requirements (see [main-rule.mdc](mdc:.cursor/rules/main-rule.mdc) for state management guidelines)
 5. Implement the code:
    - Create new files or modify existing ones
-   - Add necessary tests
+   - Add necessary tests following project testing guidelines
    - Add proper documentation (JavaDoc and inline comments)
    - Follow project's coding standards
    - Apply dependency injection best practices:
      * Inject dependencies through constructors
      * Avoid creating dependencies internally
      * Make dependencies explicit in interfaces
-     * Consider state ownership in design
 6. Ensure proper module dependencies are declared:
    - Check pom.xml for required dependencies
    - Verify version compatibility
@@ -39,24 +35,16 @@ alwaysApply: true
    - Check test coverage
    - Debug any test failures
    - Add missing test cases if gaps are found
-   - Test state management:
-     * Verify state consistency across components
-     * Test dependency injection configurations
-     * Ensure proper state transitions
-9. Mark the task with an "x".
+   - See [main-rule.mdc](mdc:.cursor/rules/main-rule.mdc) for detailed testing patterns and guidelines
+9. Mark the task with an "x":
    - Update parent tasks if all subtasks complete
    - Keep task descriptions up to date
-10. Commit changes:
+10. Commit changes (see [main-rule.mdc](mdc:.cursor/rules/main-rule.mdc) for commit message guidelines):
     - Include clear commit message
     - Reference related tasks/issues
     - Include test results if relevant
-    - Document architectural decisions:
-      * State management choices
-      * Dependency injection patterns used
-      * Component relationships
+    - Document architectural decisions
 11. Wait for user instruction before proceeding to next implementation task
-
-Note: Steps 1-10 should be executed automatically in sequence. Only pause at step 11 to wait for user instruction on which implementation task to tackle next. This ensures efficient workflow while still maintaining user control over task selection.
 
 Important Considerations:
 - Always verify test coverage before marking a task complete
@@ -64,15 +52,10 @@ Important Considerations:
 - Keep related documentation in sync with code changes
 - Consider impact on existing functionality
 - Follow error handling and logging standards
-- State Management Guidelines:
-  * Prefer dependency injection over internal object creation
-  * Make state ownership explicit and documented
-  * Minimize state copying between components
-  * Use constructor injection for required dependencies
-  * Consider immutability for shared state objects
-- Testing Best Practices:
-  * Test state transitions thoroughly
-  * Verify dependency injection configurations
-  * Include edge cases in state management tests
-  * Test component interactions with mocked dependencies
-  * Ensure proper cleanup in test teardown
+- Refer to [main-rule.mdc](mdc:.cursor/rules/main-rule.mdc) for:
+  * Detailed state management guidelines
+  * Testing patterns and best practices
+  * Project setup and configuration
+  * Tool usage guidelines
+
+Note: Steps 1-10 should be executed automatically in sequence. Only pause at step 11 to wait for user instruction on which implementation task to tackle next. This ensures efficient workflow while still maintaining user control over task selection.

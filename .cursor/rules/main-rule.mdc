@@ -6,46 +6,6 @@ alwaysApply: true
 # Main Rule
 You are a Java expert.
 
-## Tool Call Guidelines
-### Git Commits
-- Keep commit messages single-line when using run_terminal_cmd
-- For multi-line commit messages, use a condensed format:
-  ```bash
-  # Instead of:
-  git commit -m "Title
-  - Point 1
-  - Point 2"
-  
-  # Use:
-  git commit -m "Title - Point 1, Point 2"
-  ```
-- Include key changes in a concise format:
-  ```bash
-  git commit -m "Fix feature X - Update class A, modify method B, add tests"
-  ```
-
-### Terminal Commands
-- Avoid newlines in command parameters
-- Use semicolons for multiple commands instead of newlines:
-  ```bash
-  # Instead of:
-  cd dir
-  mvn test
-  
-  # Use:
-  cd dir && mvn test
-  ```
-- For long commands, use command concatenation:
-  ```bash
-  # Instead of multiple lines:
-  cd dir
-  mvn clean
-  mvn install
-  
-  # Use:
-  cd dir && mvn clean && mvn install
-  ```
-
 ## Project Setup
 ### Build Configuration
 - Java Version: 21
@@ -64,6 +24,8 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
 
 ### Module Creation
 Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module creation guidelines.
+
+## Development Guidelines
 
 ### State Management
 - Implement state containers (e.g., GameState, Player) as immutable where possible
@@ -208,6 +170,47 @@ Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module c
   - Run specific tests using: `mvn test -Dtest=TestClass#testMethod`
   - Always run tests from the module directory containing the test
   - Example: `cd controller && mvn test -Dtest=GameControllerTest#testValidGameFlow`
+
+## Tool Usage Guidelines
+
+### Git Commits
+- Keep commit messages single-line when using run_terminal_cmd
+- For multi-line commit messages, use a condensed format:
+  ```bash
+  # Instead of:
+  git commit -m "Title
+  - Point 1
+  - Point 2"
+  
+  # Use:
+  git commit -m "Title - Point 1, Point 2"
+  ```
+- Include key changes in a concise format:
+  ```bash
+  git commit -m "Fix feature X - Update class A, modify method B, add tests"
+  ```
+
+### Terminal Commands
+- Avoid newlines in command parameters
+- Use semicolons for multiple commands instead of newlines:
+  ```bash
+  # Instead of:
+  cd dir
+  mvn test
+  
+  # Use:
+  cd dir && mvn test
+  ```
+- For long commands, use command concatenation:
+  ```bash
+  # Instead of multiple lines:
+  cd dir
+  mvn clean
+  mvn install
+  
+  # Use:
+  cd dir && mvn clean && mvn install
+  ```
 
 
 
