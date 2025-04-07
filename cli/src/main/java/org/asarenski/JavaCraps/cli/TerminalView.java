@@ -11,10 +11,10 @@ import java.util.Scanner;
  */
 public class TerminalView {
     private static final String SEPARATOR = "====================";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     private final Scanner scanner;
 
@@ -115,10 +115,32 @@ public class TerminalView {
      * Displays the result of a dice roll.
      * @param die1 First die value
      * @param die2 Second die value
+     * @param gameState Current game state
      */
-    public void showRollResult(int die1, int die2) {
+    public void showRollResult(int die1, int die2, GameState gameState) {
         int total = die1 + die2;
-        System.out.printf("You rolled a %d and a %d (%d total)%n", die1, die2, total);
+        String totalColor;
+        
+        if (gameState.getCurrentPhase() == GameState.Phase.COME_OUT_ROLL) {
+            if (total == 7 || total == 11) {
+                totalColor = ANSI_GREEN;  // Natural win
+            } else if (total == 2 || total == 3 || total == 12) {
+                totalColor = ANSI_RED;    // Craps loss
+            } else {
+                totalColor = ANSI_YELLOW; // Point established
+            }
+        } else { // Point Phase
+            if (total == gameState.getPoint()) {
+                totalColor = ANSI_GREEN;  // Made the point
+            } else if (total == 7) {
+                totalColor = ANSI_RED;    // Seven out
+            } else {
+                totalColor = ANSI_YELLOW; // Continue rolling
+            }
+        }
+        
+        System.out.printf("You rolled a %d and a %d (%s%d%s total)%n", 
+            die1, die2, totalColor, total, ANSI_RESET);
     }
 
     /**

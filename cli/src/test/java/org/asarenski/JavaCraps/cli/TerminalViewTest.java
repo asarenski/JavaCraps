@@ -99,9 +99,11 @@ class TerminalViewTest {
 
     @Test
     void testShowRollResult() {
-        view.showRollResult(3, 4);
+        GameState mockState = new GameState(); // Start in COME_OUT_ROLL phase
+        view.showRollResult(3, 4, mockState);
         String output = outContent.toString();
-        assertTrue(output.contains("You rolled a 3 and a 4 (7 total)"));
+        assertTrue(output.contains("You rolled a 3 and a 4"));
+        assertTrue(output.contains("7")); // Check that total is present
     }
 
     @Test
@@ -116,6 +118,49 @@ class TerminalViewTest {
         view.showRoundOutcome(false, 50);
         String output = outContent.toString();
         assertTrue(output.contains("lose $50!"));
+    }
+
+    @Test
+    void testShowRollResultComeOutWin() {
+        GameState mockState = new GameState(); // Start in COME_OUT_ROLL phase
+        view.showRollResult(4, 3, mockState); // Total 7 (natural win)
+        String output = outContent.toString();
+        assertTrue(output.contains(TerminalView.ANSI_GREEN + "7" + TerminalView.ANSI_RESET));
+    }
+
+    @Test
+    void testShowRollResultComeOutLose() {
+        GameState mockState = new GameState(); // Start in COME_OUT_ROLL phase
+        view.showRollResult(1, 1, mockState); // Total 2 (craps)
+        String output = outContent.toString();
+        assertTrue(output.contains(TerminalView.ANSI_RED + "2" + TerminalView.ANSI_RESET));
+    }
+
+    @Test
+    void testShowRollResultPointPhaseWin() {
+        GameState mockState = new GameState();
+        mockState.enterPointPhase(8);
+        view.showRollResult(3, 5, mockState); // Total 8 (matches point)
+        String output = outContent.toString();
+        assertTrue(output.contains(TerminalView.ANSI_GREEN + "8" + TerminalView.ANSI_RESET));
+    }
+
+    @Test
+    void testShowRollResultPointPhaseLose() {
+        GameState mockState = new GameState();
+        mockState.enterPointPhase(6);
+        view.showRollResult(3, 4, mockState); // Total 7 (seven out)
+        String output = outContent.toString();
+        assertTrue(output.contains(TerminalView.ANSI_RED + "7" + TerminalView.ANSI_RESET));
+    }
+
+    @Test
+    void testShowRollResultPointPhaseContinue() {
+        GameState mockState = new GameState();
+        mockState.enterPointPhase(6);
+        view.showRollResult(2, 3, mockState); // Total 5 (continue)
+        String output = outContent.toString();
+        assertTrue(output.contains(TerminalView.ANSI_YELLOW + "5" + TerminalView.ANSI_RESET));
     }
 
     private void provideInput(String data) {
