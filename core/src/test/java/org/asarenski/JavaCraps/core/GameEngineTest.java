@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameEngineTest {
     private GameEngine gameEngine;
+    private Player player;
     private static final int TEST_BET = 10;
 
     @BeforeEach
     void setUp() {
-        gameEngine = new GameEngine();
+        player = new Player();
+        gameEngine = new GameEngine(player);
     }
 
     @Test

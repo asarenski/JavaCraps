@@ -20,8 +20,7 @@ public class GameController {
      */
     public GameController(Player player) {
         this.player = player;
-        this.gameEngine = new GameEngine();
-        this.gameEngine.getPlayer().copyState(player);
+        this.gameEngine = new GameEngine(player);
         this.moveValidator = new MoveValidator(gameEngine.getGameState(), player);
     }
 
@@ -62,8 +61,7 @@ public class GameController {
         if (!player.placeBet((int)betAmount)) {
             return false;
         }
-        gameEngine.getPlayer().copyState(player);
-        this.moveValidator = new MoveValidator(gameEngine.getGameState(), gameEngine.getPlayer());
+        this.moveValidator = new MoveValidator(gameEngine.getGameState(), player);
         return true;
     }
 
@@ -76,9 +74,7 @@ public class GameController {
         if (!moveValidator.canRoll()) {
             throw new IllegalStateException("Cannot roll dice at this time");
         }
-        int result = gameEngine.rollDice();
-        player.copyState(gameEngine.getPlayer());
-        return result;
+        return gameEngine.rollDice();
     }
 
     /**
@@ -126,6 +122,5 @@ public class GameController {
      */
     public void resetRound() {
         gameEngine.resetGame();
-        gameEngine.getPlayer().copyState(player);
     }
 } 

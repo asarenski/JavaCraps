@@ -8,9 +8,9 @@ public class GameEngine {
     private final Player player;
     private final Dice dice;
 
-    public GameEngine() {
+    public GameEngine(Player player) {
         this.gameState = new GameState();
-        this.player = new Player();
+        this.player = player;
         this.dice = new Dice();
     }
 
