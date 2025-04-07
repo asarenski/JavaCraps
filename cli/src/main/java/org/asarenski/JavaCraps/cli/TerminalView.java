@@ -203,7 +203,7 @@ public class TerminalView {
             if (input.equals("no") || input.equals("n")) {
                 return false;
             }
-            System.out.println(ANSI_RED + "Please answer 'yes' or 'no'." + ANSI_RESET);
+            System.out.println(ANSI_RED + "Please enter 'yes' or 'no'" + ANSI_RESET);
         }
     }
 

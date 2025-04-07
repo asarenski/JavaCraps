@@ -61,8 +61,15 @@ public class CrapsGameCLI implements Runnable {
     }
 
     private void playGame() {
-        while (!controller.isGameSessionOver()) {
+        while (true) {
             playRound();
+            
+            // Ask to play again first
+            if (!view.askPlayAgain()) {
+                break;
+            }
+            
+            // Then check if game is over
             if (controller.isGameSessionOver()) {
                 view.showGameOutcome(
                     controller.getPlayer().hasWon(),
@@ -70,9 +77,7 @@ public class CrapsGameCLI implements Runnable {
                 );
                 break;
             }
-            if (!view.askPlayAgain()) {
-                break;
-            }
+            
             controller.resetRound();
         }
     }
@@ -93,7 +98,7 @@ public class CrapsGameCLI implements Runnable {
         }
 
         // Main game loop
-        while (!controller.isRoundOver()) {
+        do {
             if (!view.promptForRoll()) {
                 return; // User wants to quit
             }
@@ -106,6 +111,7 @@ public class CrapsGameCLI implements Runnable {
                 
                 if (controller.isRoundOver()) {
                     handleRoundOutcome(bet);
+                    break;
                 } else if (controller.isPointPhase()) {
                     view.displayGameState(controller.getPlayer(), controller.getRoundState());
                 }
@@ -114,7 +120,7 @@ public class CrapsGameCLI implements Runnable {
                 handleRoundOutcome(bet);
                 return;
             }
-        }
+        } while (!controller.isRoundOver());
     }
 
     private void handleRoundOutcome(int betAmount) {

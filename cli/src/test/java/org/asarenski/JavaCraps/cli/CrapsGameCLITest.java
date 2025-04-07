@@ -104,6 +104,7 @@ class CrapsGameCLITest {
         String output = outputStream.toString();
         assertTrue(output.contains("Enter your bet (minimum $"), "Should prompt for bet");
         assertTrue(output.contains("Press Enter to roll the dice (or type 'quit' to exit)"), "Should prompt for roll");
+        assertTrue(output.contains("Roll: "), "Should show roll result");
         assertTrue(output.contains("Would you like to play another round? (yes/no)"), "Should ask to play again");
     }
 
