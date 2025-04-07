@@ -91,8 +91,8 @@ class CrapsGameCLITest {
     @Test
     @DisplayName("CLI should handle a complete game round with win")
     void testCompleteGameRoundWin() {
-        // Simulate placing a bet, rolling, and winning
-        String input = "10\n\nn\n";  // bet 10, press enter to roll, no to play again
+        // Simulate placing a bet, rolling multiple times if needed, and saying no to play again
+        String input = "10\n\n\n\n\n\n\n\n\n\n\nn\n";  // bet 10, press enter up to 10 times to roll, no to play again
         provideInput(input);
         CrapsGameCLI cli = new CrapsGameCLI();
         
