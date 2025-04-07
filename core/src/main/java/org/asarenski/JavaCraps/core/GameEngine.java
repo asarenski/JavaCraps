@@ -71,4 +71,12 @@ public class GameEngine {
     public Player getPlayer() {
         return player;
     }
+
+    /**
+     * Gets the values of both dice from the last roll.
+     * @return an array containing the values of both dice [die1, die2]
+     */
+    public int[] getDiceValues() {
+        return new int[]{dice.getDie1(), dice.getDie2()};
+    }
 } 
