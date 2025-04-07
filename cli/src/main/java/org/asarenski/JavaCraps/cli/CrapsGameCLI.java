@@ -7,6 +7,7 @@ import org.asarenski.JavaCraps.core.RoundState;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import picocli.CommandLine.ParameterException;
 
 import java.io.InputStream;
 
@@ -21,7 +22,7 @@ public class CrapsGameCLI implements Runnable {
     @Option(names = {"-p", "--player"}, description = "Player name", defaultValue = "Player")
     private String playerName;
 
-    @Option(names = {"-b", "--bankroll"}, description = "Initial bankroll", defaultValue = "100")
+    @Option(names = {"-b", "--bankroll"}, description = "Initial bankroll (must be positive)", defaultValue = "100")
     private int initialBankroll;
 
     private final TerminalView view;
@@ -46,6 +47,9 @@ public class CrapsGameCLI implements Runnable {
 
     @Override
     public void run() {
+        if (initialBankroll <= 0) {
+            throw new ParameterException(new CommandLine(this), "Invalid bankroll value: must be positive");
+        }
         try {
             Player player = new Player(playerName, initialBankroll);
             this.controller = new GameController(player);
