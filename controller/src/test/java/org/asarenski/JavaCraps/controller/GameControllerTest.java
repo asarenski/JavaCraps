@@ -94,4 +94,30 @@ class GameControllerTest {
         assertTrue(controller.getMinimumBet() > 0);
         assertEquals(5, controller.getMinimumBet()); // Minimum bet should be 5
     }
+
+    @Test
+    void testPlayerStatePersistsBetweenRounds() {
+        // Initial balance should be 100
+        int startingBalance = player.getBalance();
+        assertEquals(100, startingBalance);
+
+        // First round
+        assertTrue(controller.startNewRound(10));
+        int balanceAfterFirstBet = player.getBalance();
+        assertEquals(startingBalance - 10, balanceAfterFirstBet);
+        controller.roll();
+        controller.resetRound();
+        int balanceAfterFirstRound = player.getBalance();
+
+        // Second round - verify we can bet with our current balance
+        assertTrue(controller.startNewRound(20));
+        assertEquals(balanceAfterFirstRound - 20, player.getBalance());
+        controller.roll();
+        controller.resetRound();
+        int balanceAfterSecondRound = player.getBalance();
+
+        // Third round - verify we can still place bets
+        assertTrue(controller.startNewRound(30));
+        assertEquals(balanceAfterSecondRound - 30, player.getBalance());
+    }
 } 
