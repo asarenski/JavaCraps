@@ -97,7 +97,7 @@ public class CrapsGameCLI implements Runnable {
                 // Roll the dice and get values
                 int roll = controller.roll();
                 int[] diceValues = controller.getGameEngine().getDiceValues();
-                view.showRollResult(diceValues[0], diceValues[1]);
+                view.showRollResult(diceValues[0], diceValues[1], controller.getGameState());
                 
                 if (controller.isRoundOver()) {
                     boolean won = controller.getGameState().getGameStatus() == 
