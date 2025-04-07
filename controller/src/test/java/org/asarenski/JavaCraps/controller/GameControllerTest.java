@@ -20,7 +20,7 @@ class GameControllerTest {
 
     @Test
     void testInitialState() {
-        assertNotNull(controller.getGameEngine());
+        assertNotNull(controller.getRoundEngine());
         assertNotNull(controller.getPlayer());
         assertEquals(GameState.Phase.COME_OUT_ROLL, controller.getGameState().getCurrentPhase());
         assertEquals(0, controller.getPoint());

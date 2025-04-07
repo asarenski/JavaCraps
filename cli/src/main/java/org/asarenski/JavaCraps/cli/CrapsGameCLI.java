@@ -1,7 +1,7 @@
 package org.asarenski.JavaCraps.cli;
 
 import org.asarenski.JavaCraps.controller.GameController;
-import org.asarenski.JavaCraps.core.GameEngine;
+import org.asarenski.JavaCraps.core.RoundEngine;
 import org.asarenski.JavaCraps.core.Player;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -96,7 +96,7 @@ public class CrapsGameCLI implements Runnable {
             try {
                 // Roll the dice and get values
                 int roll = controller.roll();
-                int[] diceValues = controller.getGameEngine().getDiceValues();
+                int[] diceValues = controller.getRoundEngine().getDiceValues();
                 view.showRollResult(diceValues[0], diceValues[1], controller.getGameState());
                 
                 if (controller.isRoundOver()) {

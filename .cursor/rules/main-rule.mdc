@@ -29,24 +29,16 @@ Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module c
 
 ### State Management
 - Implement state containers (e.g., GameState, Player) as immutable where possible
-- Use dedicated synchronization methods for state sharing:
-  ```java
-  public void copyState(Player other) {
-      this.balance = other.balance;
-      this.currentBet = other.currentBet;
-  }
-  ```
 - Each module should maintain its own state independently
 - When sharing state between modules:
   - Use clear ownership boundaries
-  - Implement state synchronization methods (e.g., `copyState`)
-  - Document state dependencies and synchronization requirements
+  - Document state dependencies
   - Validate state consistency in tests
-  - Ensure state synchronization after state-changing operations
+  - Ensure state consistency after state-changing operations
   - Use appropriate state checks (e.g., game status vs game over)
 - Validate state transitions using dedicated validator classes
 - Document state invariants in class/method JavaDoc
-- Ensure state synchronization happens in the correct order:
+- Ensure state updates happen in the correct order:
   ```java
   public boolean startNewRound(double betAmount) {
       resetRound();  // Reset state first
@@ -56,22 +48,9 @@ Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module c
       if (!player.placeBet((int)betAmount)) {
           return false;
       }
-      // Update game engine state after successful bet
-      gameEngine.getPlayer().copyState(player);
       // Create new validator with updated state
       this.moveValidator = new MoveValidator(gameEngine.getGameState(), gameEngine.getPlayer());
       return true;
-  }
-  ```
-- Handle state validation failures gracefully:
-  ```java
-  try {
-      int roll = controller.roll();
-      // Process roll result
-  } catch (IllegalStateException e) {
-      // Handle invalid state gracefully
-      view.showRoundOutcome(false, bet);
-      return;
   }
   ```
 
@@ -89,7 +68,6 @@ Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module c
   ```java
   public void resetRound() {
       gameEngine.resetGame();
-      gameEngine.getPlayer().copyState(player);
   }
   ```
 - Throw specific exceptions for invalid operations
@@ -120,15 +98,6 @@ Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module c
   @RepeatedTest(100)
   void testMultipleRollsStayInValidRange() {
       // Test implementation
-  }
-  ```
-- Test state synchronization:
-  ```java
-  @Test
-  void testStateSync() {
-      player.placeBet(10);
-      gameEngine.getPlayer().copyState(player);
-      assertEquals(player.getBalance(), gameEngine.getPlayer().getBalance());
   }
   ```
 - Test error handling:
@@ -170,6 +139,15 @@ Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module c
   - Run specific tests using: `mvn test -Dtest=TestClass#testMethod`
   - Always run tests from the module directory containing the test
   - Example: `cd controller && mvn test -Dtest=GameControllerTest#testValidGameFlow`
+- Test state consistency:
+  ```java
+  @Test
+  void testStateConsistency() {
+      player.placeBet(10);
+      assertEquals(90, player.getBalance());
+      assertEquals(10, player.getCurrentBet());
+  }
+  ```
 
 ## Tool Usage Guidelines
 
