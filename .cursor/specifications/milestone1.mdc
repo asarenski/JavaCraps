@@ -3,8 +3,11 @@ description: Request when coding.
 globs: 
 alwaysApply: false
 ---
-## Implementation Tasks
-This file lists the implementation tasks. Each implementation task consists of a set of coding steps listed in [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc).
+## Implementation Milestone 1
+This milestone consists of:
+- setting up the project
+- base game with gameplay loop
+- CLI for UI
 
 Always review [coding-steps.mdc](mdc:.cursor/rules/coding-steps.mdc):
 - At start of task implementation.

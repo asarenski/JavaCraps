@@ -65,10 +65,6 @@ Review [main-project-specifications.mdc](mdc:.cursor/specifications/main-project
 ### Module Creation
 Review [module-creation.mdc](mdc:.cursor/rules/module-creation.mdc) for module creation guidelines.
 
-## Implementation Guidelines
-### Task Implementation
-- Always review [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc) when asked to implement a task.
-
 ### State Management
 - Implement state containers (e.g., GameState, Player) as immutable where possible
 - Use dedicated synchronization methods for state sharing:

@@ -55,8 +55,8 @@ This project implements a terminal-based version of the classic dice game Craps 
 ## User Interface
 [user-interface.mdc](mdc:.cursor/specifications/user-interface.mdc)
 
-## Implementation Tasks
-[implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
+## Milestones with Tasks
+- [milestone1.mdc](mdc:.cursor/specifications/milestone1.mdc)
 
 ## Evaluation and Success Criteria
 [evaluation-and-success-criteria.mdc](mdc:.cursor/specifications/evaluation-and-success-criteria.mdc)

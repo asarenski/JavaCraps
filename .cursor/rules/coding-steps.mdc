@@ -4,10 +4,8 @@ globs:
 alwaysApply: true
 ---
 # When asked to code a task
-When you are asked to code a task from [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
-
 1. Review the [main-project-specifications.mdc](mdc:.cursor/specifications/main-project-specifications.mdc) to understand requirements
-2. Identify the specific task in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc)
+2. Identify the specific task.
 3. Review any related specifications (e.g., architecture, game flow, etc.)
 4. Before implementation:
    - Review existing code related to the task
@@ -31,7 +29,7 @@ When you are asked to code a task from [implementation-tasks.mdc](mdc:.cursor/sp
    - Check test coverage
    - Debug any test failures
    - Add missing test cases if gaps are found
-9. Mark the task with an "x" in [implementation-tasks.mdc](mdc:.cursor/specifications/implementation-tasks.mdc):
+9. Mark the task with an "x".
    - Update parent tasks if all subtasks complete
    - Keep task descriptions up to date
 10. Commit changes:
