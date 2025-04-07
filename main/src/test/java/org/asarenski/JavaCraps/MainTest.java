@@ -32,10 +32,9 @@ public class MainTest {
     public void testCompleteGameFlow() {
         // Simulate a complete game session with:
         // 1. Bet amount: 10
-        // 2. Enter to roll
-        // 3. Enter to roll again (in case we enter point phase)
-        // 4. No to play again
-        String input = "10\n\n\n\n\n\n\nno\n";
+        // 2. Multiple enters for rolls (more than needed to handle any game path)
+        // 3. No to play again
+        String input = "10\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nno\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         
         // Run the game with default player name and bankroll
@@ -47,21 +46,23 @@ public class MainTest {
         // Verify welcome message is shown
         assert(output.contains("Welcome to JavaCraps!")) : "Welcome message not found";
         
-        // Verify game state is displayed
+        // Verify game state is displayed (more specific checks)
         assert(output.contains("Player's Balance: $")) : "Player balance not found";
-        
-        // Verify game phase is displayed
         assert(output.contains("Current Phase:")) : "Game phase not found";
+        
+        // Verify the game progressed (either won, lost, or asked to play again)
+        assert(output.contains("You win") || output.contains("You lose") || 
+               output.contains("Would you like to play another round?")) : 
+               "Game did not progress to completion";
     }
 
     @Test
     public void testCustomPlayerAndBankroll() {
         // Simulate a complete game session with:
         // 1. Bet amount: 10
-        // 2. Enter to roll
-        // 3. Enter to roll again (in case we enter point phase)
-        // 4. No to play again
-        String input = "10\n\n\n\n\n\n\nno\n";
+        // 2. Multiple enters for rolls (more than needed to handle any game path)
+        // 3. No to play again
+        String input = "10\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nno\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         
         // Run the game with custom player name and bankroll
@@ -73,10 +74,13 @@ public class MainTest {
         // Verify welcome message is shown
         assert(output.contains("Welcome to JavaCraps!")) : "Welcome message not found";
         
-        // Verify game state is displayed
-        assert(output.contains("Player's Balance: $")) : "Player balance not found";
-        
-        // Verify game phase is displayed
+        // Verify game state is displayed with custom values
+        assert(output.contains("TestPlayer's Balance: $")) : "Custom player name not found";
         assert(output.contains("Current Phase:")) : "Game phase not found";
+        
+        // Verify the game progressed (either won, lost, or asked to play again)
+        assert(output.contains("You win") || output.contains("You lose") || 
+               output.contains("Would you like to play another round?")) : 
+               "Game did not progress to completion";
     }
 } 
