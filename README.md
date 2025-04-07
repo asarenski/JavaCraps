@@ -9,6 +9,10 @@ This project implements a terminal-based version of the classic dice game Craps 
 - `cd main`
 - `mvn exec:java -Dexec.mainClass="org.asarenski.JavaCraps.Main"`
 
+## Build and run the application
+- `mvn package`
+- `java -cp main/target/main-1.0-SNAPSHOT-jar-with-dependencies.jar org.asarenski.JavaCraps.Main`
+
 ## Game Win/Lose States
 The player starts the game with $100. Minimum bet is $5. If the player reaches $0 they lose. If the player reaches $1000 they win.
 
