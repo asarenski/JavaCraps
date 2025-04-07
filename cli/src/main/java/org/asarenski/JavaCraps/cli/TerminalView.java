@@ -207,12 +207,17 @@ public class TerminalView {
         }
     }
 
+    /**
+     * Formats the game phase for display.
+     * @param phase The current game phase
+     * @return A formatted string representing the phase
+     */
     private String formatPhase(RoundState.Phase phase) {
-        return ANSI_YELLOW + phase.toString().replace("_", " ") + ANSI_RESET;
+        return phase == RoundState.Phase.COME_OUT_ROLL ? "Come Out Roll" : "Point Phase";
     }
 
     /**
-     * Closes the scanner when the view is no longer needed.
+     * Closes the scanner.
      */
     public void close() {
         scanner.close();
