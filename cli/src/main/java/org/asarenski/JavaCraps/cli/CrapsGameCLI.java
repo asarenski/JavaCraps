@@ -84,7 +84,7 @@ public class CrapsGameCLI implements Runnable {
         
         // Start new round with bet
         if (!controller.startNewRound(bet)) {
-            handleRoundOutcome();
+            handleRoundOutcome(bet);
             return;
         }
 
@@ -101,21 +101,20 @@ public class CrapsGameCLI implements Runnable {
                 view.showRollResult(diceValues[0], diceValues[1], controller.getRoundState());
                 
                 if (controller.isRoundOver()) {
-                    handleRoundOutcome();
+                    handleRoundOutcome(bet);
                 } else if (controller.isPointPhase()) {
                     view.displayGameState(controller.getPlayer(), controller.getRoundState());
                 }
             } catch (IllegalStateException e) {
                 // If we can't roll, show the outcome and end the round
-                handleRoundOutcome();
+                handleRoundOutcome(bet);
                 return;
             }
         }
     }
 
-    private void handleRoundOutcome() {
+    private void handleRoundOutcome(int betAmount) {
         boolean isWin = controller.getRoundState().getGameStatus() == RoundState.Status.WIN;
-        int betAmount = controller.getPlayer().getCurrentBet();
         view.showRoundOutcome(isWin, betAmount);
     }
 } 

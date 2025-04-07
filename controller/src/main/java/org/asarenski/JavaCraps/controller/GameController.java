@@ -53,12 +53,12 @@ public class GameController {
      * @param betAmount the amount the player wants to bet
      * @return true if the round was started successfully, false otherwise
      */
-    public boolean startNewRound(double betAmount) {
+    public boolean startNewRound(int betAmount) {
         resetRound();
-        if (!moveValidator.isValidBet((int)betAmount)) {
+        if (!moveValidator.isValidBet(betAmount)) {
             return false;
         }
-        if (!player.placeBet((int)betAmount)) {
+        if (!player.placeBet(betAmount)) {
             return false;
         }
         this.moveValidator = new MoveValidator(roundEngine.getRoundState(), player);
