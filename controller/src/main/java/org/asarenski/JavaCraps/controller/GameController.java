@@ -1,16 +1,16 @@
 package org.asarenski.JavaCraps.controller;
 
-import org.asarenski.JavaCraps.core.GameEngine;
+import org.asarenski.JavaCraps.core.RoundEngine;
 import org.asarenski.JavaCraps.core.GameState;
 import org.asarenski.JavaCraps.core.Player;
 import org.asarenski.JavaCraps.core.MoveValidator;
 
 /**
  * Controller class responsible for managing the game state and flow.
- * Coordinates between the game engine, player, and move validation.
+ * Coordinates between the round engine, player, and move validation.
  */
 public class GameController {
-    private final GameEngine gameEngine;
+    private final RoundEngine roundEngine;
     private final Player player;
     private MoveValidator moveValidator;
 
@@ -20,16 +20,16 @@ public class GameController {
      */
     public GameController(Player player) {
         this.player = player;
-        this.gameEngine = new GameEngine(player);
-        this.moveValidator = new MoveValidator(gameEngine.getGameState(), player);
+        this.roundEngine = new RoundEngine(player);
+        this.moveValidator = new MoveValidator(roundEngine.getGameState(), player);
     }
 
     /**
-     * Gets the current game engine instance.
-     * @return the game engine
+     * Gets the current round engine instance.
+     * @return the round engine
      */
-    public GameEngine getGameEngine() {
-        return gameEngine;
+    public RoundEngine getRoundEngine() {
+        return roundEngine;
     }
 
     /**
@@ -45,7 +45,7 @@ public class GameController {
      * @return the current game state
      */
     public GameState getGameState() {
-        return gameEngine.getGameState();
+        return roundEngine.getGameState();
     }
 
     /**
@@ -61,7 +61,7 @@ public class GameController {
         if (!player.placeBet((int)betAmount)) {
             return false;
         }
-        this.moveValidator = new MoveValidator(gameEngine.getGameState(), player);
+        this.moveValidator = new MoveValidator(roundEngine.getGameState(), player);
         return true;
     }
 
@@ -74,7 +74,7 @@ public class GameController {
         if (!moveValidator.canRoll()) {
             throw new IllegalStateException("Cannot roll dice at this time");
         }
-        return gameEngine.rollDice();
+        return roundEngine.rollDice();
     }
 
     /**
@@ -82,7 +82,7 @@ public class GameController {
      * @return the point value, or 0 if in come out roll phase
      */
     public int getPoint() {
-        return gameEngine.getGameState().getPoint();
+        return roundEngine.getGameState().getPoint();
     }
 
     /**
@@ -90,7 +90,7 @@ public class GameController {
      * @return true if in point phase, false if in come out roll
      */
     public boolean isInPointPhase() {
-        return gameEngine.getGameState().getCurrentPhase() == GameState.Phase.POINT_PHASE;
+        return roundEngine.getGameState().getCurrentPhase() == GameState.Phase.POINT_PHASE;
     }
 
     /**
@@ -98,7 +98,7 @@ public class GameController {
      * @return true if the round is over, false otherwise
      */
     public boolean isRoundOver() {
-        return gameEngine.getGameState().getGameStatus() != GameState.Status.PLAYING;
+        return roundEngine.getGameState().getGameStatus() != GameState.Status.PLAYING;
     }
 
     /**
@@ -121,6 +121,6 @@ public class GameController {
      * Resets the game state for a new round.
      */
     public void resetRound() {
-        gameEngine.resetGame();
+        roundEngine.resetRound();
     }
 } 
