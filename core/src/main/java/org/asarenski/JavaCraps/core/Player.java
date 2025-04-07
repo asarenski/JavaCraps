@@ -58,7 +58,7 @@ public class Player {
      */
     public void updateBalance(boolean won) {
         if (won) {
-            balance += currentBet * 2; // Return original bet plus winnings
+            balance += currentBet * 2; // Return original bet plus equal amount in winnings
         }
         currentBet = 0;
     }

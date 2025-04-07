@@ -7,9 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class DiceTest {
 
     @Test
-    void testInitialLastRoll() {
+    void testInitialValues() {
         Dice dice = new Dice();
-        assertEquals(0, dice.getLastRoll(), "Initial last roll should be 0");
+        assertEquals(0, dice.getValue(), "Initial total value should be 0");
+        assertEquals(0, dice.getDie1(), "Initial die1 value should be 0");
+        assertEquals(0, dice.getDie2(), "Initial die2 value should be 0");
     }
 
     @RepeatedTest(1000)
@@ -21,11 +23,29 @@ class DiceTest {
     }
 
     @Test
-    void testLastRollMatchesRoll() {
+    void testValueMatchesRoll() {
         Dice dice = new Dice();
         int roll = dice.roll();
-        assertEquals(roll, dice.getLastRoll(), 
-            "Last roll should match the result of roll()");
+        assertEquals(roll, dice.getValue(), 
+            "Total value should match the result of roll()");
+    }
+
+    @RepeatedTest(1000)
+    void testIndividualDiceValues() {
+        Dice dice = new Dice();
+        dice.roll();
+        int die1 = dice.getDie1();
+        int die2 = dice.getDie2();
+        
+        // Test individual die ranges
+        assertTrue(die1 >= 1 && die1 <= 6,
+            "Die1 should be between 1 and 6, but was: " + die1);
+        assertTrue(die2 >= 1 && die2 <= 6,
+            "Die2 should be between 1 and 6, but was: " + die2);
+        
+        // Test that sum matches total value
+        assertEquals(die1 + die2, dice.getValue(),
+            "Sum of individual dice should equal total value");
     }
 
     @RepeatedTest(1000)

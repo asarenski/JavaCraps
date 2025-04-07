@@ -1,19 +1,17 @@
 package org.asarenski.JavaCraps.core;
 
-import java.util.Random;
-
 /**
  * Core game engine that manages the game flow and coordinates between different components.
  */
 public class GameEngine {
     private final GameState gameState;
     private final Player player;
-    private final Random random;
+    private final Dice dice;
 
     public GameEngine() {
         this.gameState = new GameState();
         this.player = new Player();
-        this.random = new Random();
+        this.dice = new Dice();
     }
 
     /**
@@ -22,6 +20,7 @@ public class GameEngine {
     public void resetGame() {
         gameState.reset();
         player.reset();
+        dice.reset();
     }
 
     /**
@@ -38,26 +37,20 @@ public class GameEngine {
      * @return The total value of the dice roll
      */
     public int rollDice() {
-        int die1 = random.nextInt(6) + 1;
-        int die2 = random.nextInt(6) + 1;
-        int total = die1 + die2;
-
+        int total = dice.roll();
         Boolean outcome = gameState.checkOutcome(total);
         if (outcome != null) {
             player.updateBalance(outcome);
         }
-
         return total;
     }
 
     /**
-     * Gets the individual values of the last dice roll.
-     * @return An array containing the values of both dice
+     * Gets the total value of the last dice roll.
+     * @return The total of the last dice roll
      */
-    public int[] getDiceValues() {
-        int die1 = random.nextInt(6) + 1;
-        int die2 = random.nextInt(6) + 1;
-        return new int[]{die1, die2};
+    public int getLastRoll() {
+        return dice.getValue();
     }
 
     /**
@@ -65,7 +58,9 @@ public class GameEngine {
      * @return true if the game is over, false otherwise
      */
     public boolean isGameOver() {
-        return player.hasWon() || player.hasLost();
+        return player.hasWon() || player.hasLost() || 
+               gameState.getGameStatus() == GameState.Status.WIN || 
+               gameState.getGameStatus() == GameState.Status.LOSE;
     }
 
     // Getters
