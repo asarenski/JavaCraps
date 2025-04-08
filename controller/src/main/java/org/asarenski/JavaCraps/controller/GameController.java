@@ -86,6 +86,14 @@ public class GameController {
     }
 
     /**
+     * Checks if the current round is a come out roll.
+     * @return true if in come out roll phase, false otherwise
+     */
+    public boolean isComeOutRoll() {
+        return roundEngine.getRoundState().getCurrentPhase() == RoundState.Phase.COME_OUT_ROLL;
+    }
+
+    /**
      * Checks if the game is in the point phase.
      * @return true if in point phase, false if in come out roll
      */

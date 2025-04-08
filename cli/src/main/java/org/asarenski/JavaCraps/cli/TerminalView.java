@@ -116,12 +116,10 @@ public class TerminalView {
      * @param die2 Second die value
      * @param roundState Current game state
      */
-    public void showRollResult(int die1, int die2, RoundState roundState) {
+    public void showRollResult(int die1, int die2, boolean isComeOutRoll, int point) {
         int total = die1 + die2;
-        System.out.println("\nRoll: " + die1 + " + " + die2 + " = " + total);
         String totalColor;
-        
-        if (roundState.getCurrentPhase() == RoundState.Phase.COME_OUT_ROLL) {
+        if (isComeOutRoll) {
             if (total == 7 || total == 11) {
                 totalColor = ANSI_GREEN;  // Natural win
             } else if (total == 2 || total == 3 || total == 12) {
@@ -130,7 +128,7 @@ public class TerminalView {
                 totalColor = ANSI_YELLOW; // Point established
             }
         } else { // Point Phase
-            if (total == roundState.getPoint()) {
+            if (total == point) {
                 totalColor = ANSI_GREEN;  // Made the point
             } else if (total == 7) {
                 totalColor = ANSI_RED;    // Seven out
@@ -139,7 +137,7 @@ public class TerminalView {
             }
         }
         
-        System.out.printf("You rolled a %d and a %d (%s%d%s total)%n", 
+        System.out.printf("Roll: %d + %d = %s%d%s (total)%n", 
             die1, die2, totalColor, total, ANSI_RESET);
     }
 

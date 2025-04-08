@@ -95,10 +95,10 @@ class TerminalViewTest {
 
     @Test
     void testShowRollResult() {
-        RoundState mockState = new RoundState();
-        view.showRollResult(3, 4, mockState);
+        boolean isComeOutRoll = true;   
+        view.showRollResult(3, 4, isComeOutRoll, 0);
         String output = outContent.toString();
-        assertTrue(output.contains("Roll: 3 + 4 = 7"));
+        assertEquals("Roll: 3 + 4 = 7 (total)", output);
     }
 
     @Test
@@ -117,53 +117,44 @@ class TerminalViewTest {
 
     @Test
     void testShowRollResultComeOutRollNatural() {
-        RoundState mockState = new RoundState();
-        view.showRollResult(4, 3, mockState);
+        view.showRollResult(4, 3, true, 0);
         String output = outContent.toString();
-        assertTrue(output.contains("Roll: 4 + 3 = 7"));
+        assertEquals("Roll: 4 + 3 = 7 (total)", output);
     }
 
     @Test
     void testShowRollResultComeOutWin() {
-        RoundState mockState = new RoundState();
-        view.showRollResult(4, 3, mockState);
+        view.showRollResult(7, 4, true, 0);
         String output = outContent.toString();
-        assertTrue(output.contains("total)"));
+        assertEquals("Roll: 7 + 4 = 11 (total)", output);
     }
 
     @Test
     void testShowRollResultComeOutLose() {
-        RoundState mockState = new RoundState();
-        view.showRollResult(1, 1, mockState);
+        view.showRollResult(1, 1, true, 0);
         String output = outContent.toString();
-        assertTrue(output.contains("total)"));
+        assertEquals("Roll: 1 + 1 = 2 (total)", output);
     }
 
     @Test
     void testShowRollResultPointPhaseWin() {
-        RoundState mockState = new RoundState();
-        mockState.enterPointPhase(8);
-        view.showRollResult(3, 5, mockState);
+        view.showRollResult(3, 5, false, 8);
         String output = outContent.toString();
-        assertTrue(output.contains("total)"));
+        assertEquals("Roll: 3 + 5 = 8 (total)", output);
     }
 
     @Test
     void testShowRollResultPointPhaseLose() {
-        RoundState mockState = new RoundState();
-        mockState.enterPointPhase(6);
-        view.showRollResult(3, 4, mockState);
+        view.showRollResult(3, 4, false, 6);
         String output = outContent.toString();
-        assertTrue(output.contains("total)"));
+        assertEquals("Roll: 3 + 4 = 7 (total)", output);
     }
 
     @Test
     void testShowRollResultPointPhaseContinue() {
-        RoundState mockState = new RoundState();
-        mockState.enterPointPhase(6);
-        view.showRollResult(2, 3, mockState);
+        view.showRollResult(2, 3, false, 6);
         String output = outContent.toString();
-        assertTrue(output.contains("total)"));
+        assertEquals("Roll: 2 + 3 = 5 (total)", output);
     }
 
     private void provideInput(String data) {

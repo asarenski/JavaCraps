@@ -104,10 +104,12 @@ public class CrapsGameCLI implements Runnable {
             }
 
             try {
+                // Check if the current round is a come out roll
+                boolean isComeOutRoll = controller.isComeOutRoll();
                 // Roll the dice and get values
                 int roll = controller.roll();
                 int[] diceValues = controller.getRoundEngine().getDiceValues();
-                view.showRollResult(diceValues[0], diceValues[1], controller.getRoundState());
+                view.showRollResult(diceValues[0], diceValues[1], isComeOutRoll, controller.getPoint());
                 
                 if (controller.isRoundOver()) {
                     handleRoundOutcome(bet);
