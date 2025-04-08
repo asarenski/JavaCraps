@@ -126,6 +126,14 @@ public class GameController {
     }
 
     /**
+     * Checks if the current round was won.
+     * @return true if the round was won, false if lost
+     */
+    public boolean isWin() {
+        return roundEngine.getRoundState().getGameStatus() == RoundState.Status.WIN;
+    }
+
+    /**
      * Resets the game state for a new round.
      */
     public void resetRound() {

@@ -125,8 +125,10 @@ public class CrapsGameCLI implements Runnable {
         } while (!controller.isRoundOver());
     }
 
-    private void handleRoundOutcome(int betAmount) {
-        boolean isWin = controller.getRoundState().getGameStatus() == RoundState.Status.WIN;
-        view.showRoundOutcome(isWin, betAmount);
+    /**
+     * Takes the bet amount because of implementation details of Player::updateBalance.
+     */
+    private void handleRoundOutcome(int bet) {
+        view.showRoundOutcome(controller.isWin(), bet);
     }
 } 
