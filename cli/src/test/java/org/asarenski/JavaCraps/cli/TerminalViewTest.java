@@ -52,7 +52,7 @@ class TerminalViewTest {
         assertEquals(50, bet);
         
         String output = outContent.toString();
-        assertTrue(output.contains("Invalid bet amount"));
+        assertTrue(output.contains(TerminalView.ANSI_RED + "Invalid bet amount. Please try again." + TerminalView.ANSI_RESET));
     }
 
     @Test
@@ -97,64 +97,64 @@ class TerminalViewTest {
     void testShowRollResult() {
         boolean isComeOutRoll = true;   
         view.showRollResult(3, 4, isComeOutRoll, 0);
-        String output = outContent.toString();
-        assertEquals("Roll: 3 + 4 = 7 (total)", output);
+        String output = outContent.toString().trim();
+        assertEquals("Roll: 3 + 4 = " + TerminalView.ANSI_GREEN + "7" + TerminalView.ANSI_RESET + " (total)", output);
     }
 
     @Test
     void testShowRoundOutcomeWin() {
         view.showRoundOutcome(true, 50);
-        String output = outContent.toString();
-        assertTrue(output.contains("win $50"));
+        String output = outContent.toString().trim();
+        assertTrue(output.contains("You win $50!"));
     }
 
     @Test
     void testShowRoundOutcomeLose() {
         view.showRoundOutcome(false, 50);
-        String output = outContent.toString();
-        assertTrue(output.contains("lose $50"));
+        String output = outContent.toString().trim();
+        assertTrue(output.contains("You lose $50!"));
     }
 
     @Test
     void testShowRollResultComeOutRollNatural() {
         view.showRollResult(4, 3, true, 0);
-        String output = outContent.toString();
-        assertEquals("Roll: 4 + 3 = 7 (total)", output);
+        String output = outContent.toString().trim();
+        assertEquals("Roll: 4 + 3 = " + TerminalView.ANSI_GREEN + "7" + TerminalView.ANSI_RESET + " (total)", output);
     }
 
     @Test
     void testShowRollResultComeOutWin() {
         view.showRollResult(7, 4, true, 0);
-        String output = outContent.toString();
-        assertEquals("Roll: 7 + 4 = 11 (total)", output);
+        String output = outContent.toString().trim();
+        assertEquals("Roll: 7 + 4 = " + TerminalView.ANSI_GREEN + "11" + TerminalView.ANSI_RESET + " (total)", output);
     }
 
     @Test
     void testShowRollResultComeOutLose() {
         view.showRollResult(1, 1, true, 0);
-        String output = outContent.toString();
-        assertEquals("Roll: 1 + 1 = 2 (total)", output);
+        String output = outContent.toString().trim();
+        assertEquals("Roll: 1 + 1 = " + TerminalView.ANSI_RED + "2" + TerminalView.ANSI_RESET + " (total)", output);
     }
 
     @Test
     void testShowRollResultPointPhaseWin() {
         view.showRollResult(3, 5, false, 8);
-        String output = outContent.toString();
-        assertEquals("Roll: 3 + 5 = 8 (total)", output);
+        String output = outContent.toString().trim();
+        assertEquals("Roll: 3 + 5 = " + TerminalView.ANSI_GREEN + "8" + TerminalView.ANSI_RESET + " (total)", output);
     }
 
     @Test
     void testShowRollResultPointPhaseLose() {
         view.showRollResult(3, 4, false, 6);
-        String output = outContent.toString();
-        assertEquals("Roll: 3 + 4 = 7 (total)", output);
+        String output = outContent.toString().trim();
+        assertEquals("Roll: 3 + 4 = " + TerminalView.ANSI_RED + "7" + TerminalView.ANSI_RESET + " (total)", output);
     }
 
     @Test
     void testShowRollResultPointPhaseContinue() {
         view.showRollResult(2, 3, false, 6);
-        String output = outContent.toString();
-        assertEquals("Roll: 2 + 3 = 5 (total)", output);
+        String output = outContent.toString().trim();
+        assertEquals("Roll: 2 + 3 = " + TerminalView.ANSI_YELLOW + "5" + TerminalView.ANSI_RESET + " (total)", output);
     }
 
     private void provideInput(String data) {
